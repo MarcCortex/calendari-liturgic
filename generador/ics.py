@@ -3,6 +3,9 @@ import datetime as dt
 import hashlib
 
 SUFIX_UID = '@liturgia-cat'
+# Color suggerit (to "flamenc" de Google Calendar). L'Apple Calendar el fa servir; Google l'ignora.
+COLOR = '#E67C73'
+COLOR_CSS = 'salmon'
 
 
 def esc(t):
@@ -40,7 +43,8 @@ def calendari(nom, descripcio, events):
     linies = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//calendari-liturgic//CA', 'CALSCALE:GREGORIAN',
               'METHOD:PUBLISH', fold(f'X-WR-CALNAME:{esc(nom)}'), 'X-WR-TIMEZONE:Europe/Madrid',
               fold(f'X-WR-CALDESC:{esc(descripcio)}'),
-              'REFRESH-INTERVAL;VALUE=DURATION:PT12H', 'X-PUBLISHED-TTL:PT12H']
+              'REFRESH-INTERVAL;VALUE=DURATION:PT12H', 'X-PUBLISHED-TTL:PT12H',
+              f'X-APPLE-CALENDAR-COLOR:{COLOR}', f'COLOR:{COLOR_CSS}']
     for e in events:
         linies += e
     linies.append('END:VCALENDAR')

@@ -29,13 +29,13 @@ TEXTOS = {
         peu="Calendari romà general amb el propi d'Espanya, de Catalunya i de la diòcesi de Sant Feliu de Llobregat.",
         signatura=" Elaborat per {autor}.", periode="del {a} al {b}",
         fitxers={
-            'liturgia-i-cami.ics': ('Litúrgia i Camí', "Calendari litúrgic en català i dates del Camí Neocatecumenal, {p}.{s}", 'tot'),
+            'liturgia-i-cami.ics': ('Calendari litúrgic', "Calendari litúrgic en català i dates del Camí Neocatecumenal, {p}.{s}", 'tot'),
         }),
     'es': dict(
         peu="Calendario romano general con el propio de España, de Cataluña y de la diócesis de Sant Feliu de Llobregat.",
         signatura=" Elaborado por {autor}.", periode="del {a} al {b}",
         fitxers={
-            'calendario-es.ics': ('Liturgia y Camino', "Calendario litúrgico en castellano y fechas del Camino Neocatecumenal, {p}.{s}", 'tot'),
+            'calendario-es.ics': ('Calendario litúrgico', "Calendario litúrgico en castellano y fechas del Camino Neocatecumenal, {p}.{s}", 'tot'),
         }),
 }
 
