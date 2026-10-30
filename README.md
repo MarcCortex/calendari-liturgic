@@ -4,8 +4,8 @@ Genera i publica dos calendaris als quals et pots subscriure des de Google Calen
 
 | Fitxer | Contingut |
 |---|---|
-| `liturgia-i-cami.ics` | **Català**: calendari litúrgic i dates del Camí, tot junt. |
-| `calendario-es.ics` | **Castellano**: el mateix calendari en castellà. |
+| `calendari-ca.ics` | **Català**: calendari litúrgic i dates del Camí, tot junt. |
+| `calendari-es.ics` | **Castellano**: el mateix calendari en castellà. |
 
 Cada dia amb alguna celebració (diumenges, solemnitats, festes, memòries i sants) porta el nom al títol; els dies feriers sense cap sant no surten. En obrir-lo hi ha el temps i la setmana, el grau, el color litúrgic, el salteri i els cicles. Els textos en castellà de les dates del Camí i del propi són als camps `titol_es`, `descripcio_es` i `nom_es` dels fitxers de `dades/`.
 
