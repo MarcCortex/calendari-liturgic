@@ -7,7 +7,7 @@ Genera i publica dos calendaris als quals et pots subscriure des de Google Calen
 | `liturgia-i-cami.ics` | **Català**: calendari litúrgic i dates del Camí, tot junt. |
 | `calendario-es.ics` | **Castellano**: el mateix calendari en castellà. |
 
-Cada dia porta la celebració o els sants al títol; en obrir-lo, el temps i la setmana, el grau, el color litúrgic, el salteri i els cicles. Els textos en castellà de les dates del Camí i del propi són als camps `titol_es`, `descripcio_es` i `nom_es` dels fitxers de `dades/`.
+Cada dia amb alguna celebració (diumenges, solemnitats, festes, memòries i sants) porta el nom al títol; els dies feriers sense cap sant no surten. En obrir-lo hi ha el temps i la setmana, el grau, el color litúrgic, el salteri i els cicles. Els textos en castellà de les dates del Camí i del propi són als camps `titol_es`, `descripcio_es` i `nom_es` dels fitxers de `dades/`.
 
 El calendari és el romà general amb el propi d'Espanya (via [romcal](https://github.com/romcal/romcal)), més el propi de Catalunya i de la diòcesi de Sant Feliu de Llobregat (`dades/propi.yaml`). Cobreix l'any litúrgic en curs i els tres següents. GitHub el torna a generar sol el dia 1 de cada mes i cada vegada que es modifica algun fitxer.
 

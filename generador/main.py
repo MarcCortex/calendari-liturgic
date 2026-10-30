@@ -73,7 +73,7 @@ def main():
         signatura = tx['signatura'].format(autor=autor) if autor else ''
         pre = (lang,) if lang != 'ca' else ()
         ev_lit = [ics.vevent(ics.uid(*pre, 'dia', x['data']), x['data'], x['data'] + dt.timedelta(1),
-                             x['titol'], x['desc'] + '\n\n' + tx['peu'] + signatura) for x in dies]
+                             x['titol'], x['desc'] + '\n\n' + tx['peu'] + signatura) for x in dies if not x['buit']]
         ev_lit += [ics.vevent(ics.uid(*pre, 'temps', t['ini']), t['ini'], t['fi'] + dt.timedelta(1),
                               t['nom'], t['desc']) for t in trams]
         ev_lit += cami.genera(locals_, inici, fi, prefix='local', lang=lang)

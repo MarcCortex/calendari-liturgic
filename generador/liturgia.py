@@ -387,9 +387,9 @@ def genera(raw, anys, propi, emojis=False, sigles=False, lang='ca'):
             grau = L['grau_temps'][tipus]
             # Fèria amb memòries lliures: el títol és només el nom dels sants.
             # (A Quaresma i en les fèries privilegiades es manté el nom del dia.)
-            lliures = [o for o in opc if o['rank'] == ML]
-            if lliures and pt_prec == 13:
-                noms = [o['nom'].split(', ')[0] + (' (ml)' if sigles else '') for o in lliures]
+            lliures = opc  # memòries lliures o commemoracions (Quaresma, 17-31 de desembre)
+            if lliures:
+                noms = [o['nom'].split(', ')[0] + (f" ({SIGLA[o['rank']]})" if sigles else '') for o in lliures]
                 titol = noms[0] if len(noms) == 1 else ', '.join(noms[:-1]) + L['i'] + noms[-1]
         desc = []
         if p:
@@ -402,7 +402,9 @@ def genera(raw, anys, propi, emojis=False, sigles=False, lang='ca'):
         desc.append(f"{L['color_l']}: {L['color'][color]}")
         desc.append(f"{L['salteri']} {SALT.get(info['psalter'], '—')}")
         desc.append(f"{L['cicle_dom']}: {L['cicle'][info['sunCycle']]} · {L['cicle_fer']}: {L['cicle'][info['wkCycle']]}")
-        dies.append(dict(data=d, titol=(f"{EMOJI[color]} " if emojis else '') + titol, desc='\n'.join(desc)))
+        # Dia "normal": fèria sense cap sant ni celebració. No es publica.
+        buit = not princ and not opc and tipus == 'feria'
+        dies.append(dict(data=d, buit=buit, titol=(f"{EMOJI[color]} " if emojis else '') + titol, desc='\n'.join(desc)))
         d += td(1)
 
     # ---- franges dels temps litúrgics i inici de cada any
