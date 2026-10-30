@@ -1,0 +1,64 @@
+name: Publica els calendaris
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '23 4 1 * *'   # el dia 1 de cada mes, cap a les 5-6 h (hora de Barcelona)
+  workflow_dispatch:       # botó "Run workflow" per executar-lo a mà
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  actions: write           # per mantenir activa la tasca programada (vegeu l'últim pas)
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  genera:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instal·la les dependències
+        run: |
+          npm ci
+          pip install -r requirements.txt
+
+      - name: Genera els calendaris
+        run: python generador/main.py --sortida public
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      # GitHub atura les tasques programades d'un repositori públic que porta 60 dies
+      # sense canvis. Aquesta crida la torna a activar cada mes perquè no passi.
+      - name: Mantén activa la tasca programada
+        if: github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/publica.yml/enable" || true
+
+  publica:
+    needs: genera
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.desplegament.outputs.page_url }}
+    steps:
+      - id: desplegament
+        uses: actions/deploy-pages@v4
