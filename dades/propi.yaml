@@ -1,0 +1,43 @@
+# Celebracions pròpies de Catalunya i de la diòcesi de Sant Feliu de Llobregat
+# que s'afegeixen (o canvien de grau) respecte del calendari d'Espanya.
+#
+# Camps:
+#   data:  mes-dia (MM-DD)
+#   nom:   com ha d'aparèixer al calendari
+#   grau:  solemnitat | festa | memoria | memoria-lliure | tempores
+#   color: blanc | vermell | morat | verd   (no cal per a "tempores")
+#
+# Si coincideix amb un dia de més rang, el generador aplica les normes litúrgiques:
+# les solemnitats es traslladen, les festes i memòries s'ometen
+# i, a Quaresma i del 17 al 31 de desembre, les memòries passen a commemoració.
+
+- {data: "01-07", nom: "Sant Ramon de Penyafort, prevere", grau: memoria, color: blanc}
+- {data: "01-19", nom: "Santa Agnès, verge i màrtir", grau: memoria, color: vermell}
+- {data: "01-21", nom: "Sant Fructuós, bisbe, i els diaques sant Auguri i sant Eulogi, màrtirs", grau: festa, color: vermell}
+- {data: "01-29", nom: "Sant Pere Nolasc, prevere", grau: memoria-lliure, color: blanc}
+- {data: "02-12", nom: "Santa Eulàlia de Barcelona, verge i màrtir", grau: memoria-lliure, color: vermell}
+- {data: "02-26", nom: "Santa Paula Montal, verge", grau: memoria-lliure, color: blanc}
+- {data: "03-06", nom: "Sant Oleguer, bisbe", grau: memoria-lliure, color: blanc}
+- {data: "03-09", nom: "Sant Pacià, bisbe", grau: memoria-lliure, color: blanc}
+- {data: "03-23", nom: "Sant Josep Oriol, prevere", grau: memoria-lliure, color: blanc}
+- {data: "04-23", nom: "Sant Jordi, màrtir, patró de Catalunya", grau: solemnitat, color: vermell}
+- {data: "04-26", nom: "Sant Isidor, bisbe i doctor de l'Església", grau: memoria, color: blanc}
+- {data: "04-27", nom: "La Mare de Déu de Montserrat, patrona de Catalunya", grau: solemnitat, color: blanc}
+- {data: "05-26", nom: "Aniversari de la Dedicació de la catedral de Sant Feliu de Llobregat", grau: festa, color: blanc}
+- {data: "05-27", nom: "Beat Josep Tous i Soler, prevere", grau: memoria-lliure, color: blanc}
+- {data: "05-28", nom: "Sant Felip Neri, prevere", grau: memoria, color: blanc}
+- {data: "05-30", nom: "Beat Pere Tarrés i Claret, prevere", grau: memoria-lliure, color: blanc}
+- {data: "06-06", nom: "Beat Josep Maria Peris, prevere i màrtir", grau: memoria-lliure, color: vermell}
+- {data: "06-26", nom: "Sant Josepmaria Escrivà de Balaguer, prevere", grau: memoria-lliure, color: blanc}
+- {data: "07-27", nom: "Sant Cugat, màrtir", grau: memoria, color: vermell}
+- {data: "07-30", nom: "Beat Cristí Roca i companys, màrtirs", grau: memoria-lliure, color: vermell}
+- {data: "09-01", nom: "Beat Josep Samsó i Elias, prevere i màrtir", grau: memoria-lliure, color: vermell}
+- {data: "09-10", nom: "Beats Domènec Castellet i Lluís Eixarch, preveres i màrtirs", grau: memoria-lliure, color: vermell}
+- {data: "09-19", nom: "Santa Maria de Cervelló, verge", grau: memoria-lliure, color: blanc}
+- {data: "09-24", nom: "La Mare de Déu de la Mercè", grau: festa, color: blanc}
+- {data: "10-05", nom: "Témpores d'acció de gràcies i de petició", grau: tempores}
+- {data: "10-08", nom: "Santa Faustina Kowalska, verge", grau: memoria-lliure, color: blanc}
+- {data: "11-05", nom: "Beata Maria Ràfols, verge", grau: memoria-lliure, color: blanc}
+- {data: "11-05", nom: "Santa Àngela de la Creu, verge", grau: memoria-lliure, color: blanc}
+- {data: "11-20", nom: "Beata Isabel Ferrer i Sabrià i companyes, verges i màrtirs", grau: memoria-lliure, color: vermell}
+- {data: "12-16", nom: "Sant Josep Manyanet i Vives, prevere", grau: memoria-lliure, color: blanc}

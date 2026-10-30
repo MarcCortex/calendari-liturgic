@@ -1,0 +1,85 @@
+# Dates del Camí Neocatecumenal.
+#
+# Camps:
+#   data:        data original (AAAA-MM-DD)
+#   titol:       títol de l'esdeveniment. Si s'escriu {n}, es substitueix per l'ordinal
+#                de l'aniversari (1r, 2n, 25è...).
+#   descripcio:  text que surt en obrir l'esdeveniment (opcional)
+#   font:        enllaç a la font (opcional)
+#   repeteix:    true (per defecte) = surt cada any per l'aniversari;
+#                false = surt només el dia indicat (per a una convivència, una trobada...)
+#
+# Per afegir-hi una data, copia un bloc, canvia'l i desa el fitxer.
+# Els calendaris es tornen a publicar sols al cap d'un parell de minuts.
+
+- data: 2016-07-19
+  titol: "✝️ {n} aniversari de la mort de Carmen Hernández"
+  descripcio: >-
+    Carmen Hernández Barrera, coiniciadora del Camí Neocatecumenal, va morir a Madrid
+    el 19 de juliol de 2016, als 85 anys. Està enterrada al Seminari Redemptoris Mater de Madrid.
+    El 19 de juliol de 2021 es va demanar formalment l'obertura de la seva causa de beatificació.
+  font: https://www.ewtnnews.com/world/europe/neocatechumenal-way-to-conclude-diocesan-phase-of-co-founder-s-cause-for-canonization
+
+- data: 1930-11-24
+  titol: "🎂 Naixement de Carmen Hernández ({n} aniversari)"
+  descripcio: Carmen Hernández Barrera va néixer a Ólvega (Sòria) el 24 de novembre de 1930.
+  font: https://en.wikipedia.org/wiki/Carmen_Hern%C3%A1ndez
+
+- data: 2022-12-04
+  titol: "📜 Obertura de la causa de beatificació de Carmen Hernández ({n} aniversari)"
+  descripcio: >-
+    El 4 de desembre de 2022 es va obrir a Madrid la fase diocesana de la causa
+    de beatificació i canonització de Carmen Hernández.
+  font: https://www.ewtnnews.com/world/europe/neocatechumenal-way-to-conclude-diocesan-phase-of-co-founder-s-cause-for-canonization
+
+- data: 2026-06-02
+  titol: "📜 Clausura de la fase diocesana de la causa de Carmen Hernández ({n} aniversari)"
+  descripcio: >-
+    El 2 de juny de 2026 es va cloure al Seminari Redemptoris Mater de Madrid la fase diocesana
+    de la causa de beatificació i canonització de Carmen Hernández. La causa continua ara a Roma.
+  font: https://www.laityfamilylife.va/content/dam/laityfamilylife/Pdf/Cammino%20Neocatecumenale_ChiusuracausaHernandez_ES.pdf
+
+- data: 1939-01-09
+  titol: "🎂 Naixement de Kiko Argüello ({n} aniversari)"
+  descripcio: >-
+    Francisco (Kiko) Argüello, iniciador del Camí Neocatecumenal, va néixer a Lleó
+    el 9 de gener de 1939.
+  font: https://en.wikipedia.org/wiki/Kiko_Arg%C3%BCello
+
+- data: 2002-06-29
+  titol: "📘 Aprovació ad experimentum dels Estatuts del Camí ({n} aniversari)"
+  descripcio: >-
+    El Pontifici Consell per als Laics va aprovar els Estatuts del Camí Neocatecumenal
+    ad experimentum per cinc anys amb un decret datat el 29 de juny de 2002,
+    solemnitat de Sant Pere i Sant Pau.
+  font: https://www.ewtn.com/catholicism/library/decree-of-approval-of-statutes-of-neocatechumenal-way-ad-experimentum-2433
+
+- data: 2008-05-11
+  titol: "📘 Aprovació definitiva dels Estatuts del Camí ({n} aniversari)"
+  descripcio: >-
+    El Pontifici Consell per als Laics va concedir l'aprovació definitiva dels Estatuts
+    amb decret de l'11 de maig de 2008, diumenge de Pentecosta.
+    El decret es va lliurar als iniciadors el 13 de juny de 2008.
+  font: https://www.laityfamilylife.va/content/laityfamilylife/en/associazioni-e-movimenti/repertorio/cammino-neocatecumenale.html
+
+- data: 1990-08-30
+  titol: "✉️ Carta «Ogni qualvolta» de sant Joan Pau II ({n} aniversari)"
+  descripcio: >-
+    Amb la carta «Ogni qualvolta» del 30 d'agost de 1990, Joan Pau II va reconèixer
+    el Camí Neocatecumenal com un itinerari de formació catòlica vàlid
+    per a la societat i els temps d'avui.
+  font: https://en.wikipedia.org/wiki/Kiko_Arg%C3%BCello
+
+- data: 2012-01-20
+  titol: "🕊️ Aprovació de les celebracions del Camí ({n} aniversari)"
+  descripcio: >-
+    El gener de 2012 la Santa Seu va fer públic el decret del Pontifici Consell per als Laics
+    que aprova les celebracions del Directori catequètic del Camí.
+    El 20 de gener de 2012 Benet XVI va rebre el Camí en audiència a l'Aula Pau VI.
+  font: https://www.vatican.va/content/benedict-xvi/es/speeches/2012/january/documents/hf_ben-xvi_spe_20120120_cammino-neocatecumenale.html
+
+# Exemple d'una data que no es repeteix (treu els # per activar-la):
+# - data: 2027-03-12
+#   titol: "⛺ Convivència de comunitat"
+#   descripcio: Lloc, horari...
+#   repeteix: false

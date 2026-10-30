@@ -1,0 +1,10 @@
+{
+  "name": "calendari-liturgic",
+  "private": true,
+  "type": "module",
+  "description": "Dades del calendari romà (romcal) per al generador del calendari litúrgic",
+  "dependencies": {
+    "@romcal/calendar.spain": "3.0.0-dev.143",
+    "romcal": "3.0.0-dev.143"
+  }
+}
