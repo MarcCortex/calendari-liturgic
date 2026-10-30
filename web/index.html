@@ -62,7 +62,7 @@
 <script>
   const CALS = [
     { fitxer: 'liturgia.ics', nom: 'Litúrgia',
-      desc: "Cada dia amb el temps, la setmana, la celebració, el grau i el color litúrgic. Propi d'Espanya, de Catalunya i de la diòcesi de Sant Feliu de Llobregat." },
+      desc: "Cada dia amb la celebració o els sants; en obrir-lo, el temps, la setmana, el grau i el color litúrgic. Propi d'Espanya, de Catalunya i de la diòcesi de Sant Feliu de Llobregat." },
     { fitxer: 'cami.ics', nom: 'Camí Neocatecumenal',
       desc: 'Aniversaris i dates del Camí: Carmen Hernández, Kiko Argüello, Estatuts…' },
     { fitxer: 'liturgia-i-cami.ics', nom: 'Litúrgia i Camí (tot junt)',
@@ -88,6 +88,10 @@
     el.querySelector('p').textContent = c.desc;
     el.querySelector('.url').value = https;
     el.querySelector('.primari').href = google;
+    const slug = c.fitxer.replace('.ics', '');
+    el.querySelector('.primari').dataset.goatcounterClick = 'google-' + slug;
+    el.querySelectorAll('a.btn')[1].dataset.goatcounterClick = 'webcal-' + slug;
+    el.querySelector('.copia').dataset.goatcounterClick = 'copia-' + slug;
     el.querySelectorAll('a.btn')[1].href = webcal;
     const b = el.querySelector('.copia');
     b.addEventListener('click', async () => {
@@ -101,8 +105,10 @@
   fetch('info.json', { cache: 'no-store' }).then(r => r.json()).then(i => {
     document.getElementById('info').textContent =
       `Calendari litúrgic en català i dates del Camí Neocatecumenal. Cursos ${i.cursos.join(', ')} (del ${i.inici} al ${i.fi}).`;
-    document.getElementById('peu').textContent = `Actualitzat el ${i.generat}. S'actualitza sol cada mes.`;
+    document.getElementById('peu').textContent =
+      (i.autor ? `Calendari elaborat per ${i.autor}. ` : '') + `Actualitzat el ${i.generat}. S'actualitza sol cada mes.`;
   }).catch(() => {});
 </script>
+<!-- GOATCOUNTER -->
 </body>
 </html>

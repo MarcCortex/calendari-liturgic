@@ -1,0 +1,14 @@
+# Configuració general dels calendaris
+
+# Nom que surt com a autor a la descripció dels calendaris i a la pàgina web
+autor: "Marc SR"
+
+# true = posa un cercle del color litúrgic davant de cada títol (🟢 ⚪ 🔴 🟣)
+emojis: false
+
+# true = afegeix el grau al títol: (S) solemnitat, (F) festa, (M) memòria, (ml) memòria lliure
+sigles: false
+
+# Comptador de visites (goatcounter.com): escriu el codi del teu compte,
+# és a dir, el que va davant de ".goatcounter.com". Deixa-ho buit per desactivar-lo.
+goatcounter: ""

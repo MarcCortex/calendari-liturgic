@@ -1,0 +1,15 @@
+# Celebracions i records locals que no són al calendari oficial de la diòcesi.
+# Surten al calendari de Litúrgia com un esdeveniment a part, el mateix dia.
+# Mateix format que dades/cami.yaml (data, titol, descripcio, font, repeteix).
+
+- data: 1936-11-19
+  titol: "Beat Alexandre Planas i Saurí, màrtir (Sant Vicenç dels Horts)"
+  descripcio: >-
+    Aniversari del martiri del beat Alexandre Planas i Saurí. Nascut a Mataró el 31 de desembre de 1878
+    i sord, el 1900 va arribar a la casa salesiana de Sant Vicenç dels Horts, on va viure fins al 1931.
+    Al poble l'anomenaven «el Sord dels Frares». La nit del 18 al 19 de novembre de 1936 el van detenir
+    i el van afusellar a la platja del Garraf, juntament amb el salesià coadjutor Eliseu García.
+    Sant Joan Pau II el va beatificar l'11 de març de 2001. A l'església parroquial de Sant Vicenç
+    dels Horts una placa recorda el lloc on pregava. La Família Salesiana celebra els màrtirs
+    beatificats el 2001 el 22 de setembre.
+  font: https://www.donbosco.press/es/nuestros-santos/alexandre-planas-sauri-el-martir-sordo-1-2/

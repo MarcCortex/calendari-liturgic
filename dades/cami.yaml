@@ -78,6 +78,21 @@
     El 20 de gener de 2012 Benet XVI va rebre el Camí en audiència a l'Aula Pau VI.
   font: https://www.vatican.va/content/benedict-xvi/es/speeches/2012/january/documents/hf_ben-xvi_spe_20120120_cammino-neocatecumenale.html
 
+- data: 1941-09-19
+  titol: "🎂 Naixement del P. Mario Pezzi ({n} aniversari)"
+  descripcio: >-
+    El P. Mario Pezzi, prevere de l'Equip responsable internacional del Camí Neocatecumenal
+    juntament amb Kiko Argüello (i amb Carmen Hernández fins al 2016), va néixer
+    a Gottolengo (Brescia, Itàlia) el 19 de setembre de 1941.
+  font: https://en.wikipedia.org/wiki/Mario_Pezzi_(priest)
+
+- data: 1969-03-18
+  titol: "⛪ Ordenació sacerdotal del P. Mario Pezzi ({n} aniversari)"
+  descripcio: >-
+    El P. Mario Pezzi va ser ordenat prevere el 18 de març de 1969, com a missioner comboni.
+    El 1970 va entrar al Camí Neocatecumenal i des del 1971 forma part de l'Equip responsable internacional.
+  font: https://en.wikipedia.org/wiki/Mario_Pezzi_(priest)
+
 # Exemple d'una data que no es repeteix (treu els # per activar-la):
 # - data: 2027-03-12
 #   titol: "⛺ Convivència de comunitat"

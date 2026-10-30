@@ -164,7 +164,7 @@ GRAU_TEMPS = {'diumenge': 'Diumenge', 'solemnitat': 'Solemnitat', 'festa': 'Fest
               'feria-priv': 'Fèria privilegiada', 'octava': 'Octava de Pasqua', 'tridu': 'Tridu Pasqual'}
 
 
-def genera(raw, anys, propi):
+def genera(raw, anys, propi, emojis=False, sigles=False):
     """raw: sortida de romcal_dump.mjs; anys: anys litúrgics (any final) consecutius;
     propi: llista de dades/propi.yaml. Retorna (dies, trams, avisos)."""
     INICI, FI = advent1(anys[0] - 1), advent1(anys[-1]) - td(1)
@@ -287,7 +287,7 @@ def genera(raw, anys, propi):
         info = info_dia[d]
         if princ:
             p = princ[0]
-            titol = p['nom'] + (f" ({SIGLA[p['rank']]})" if SIGLA[p['rank']] else '')
+            titol = p['nom'] + (f" ({SIGLA[p['rank']]})" if sigles and SIGLA[p['rank']] else '')
             color = p['color'] or pt_col
             grau = RANG_CA[p['rank']]
             if p['id'] == 'commemoration_of_all_the_faithful_departed':
@@ -295,9 +295,12 @@ def genera(raw, anys, propi):
         else:
             p, titol, color = None, nomt, pt_col
             grau = GRAU_TEMPS[tipus]
-            if opc:
-                curt = (lambda n: n.split(', ')[0]) if len(opc) > 1 else (lambda n: n)
-                titol += ' · ' + ' / '.join(curt(o['nom']) + f" ({SIGLA[o['rank']]})" for o in opc)
+            # Fèria amb memòries lliures: el títol és només el nom dels sants.
+            # (A Quaresma i en les fèries privilegiades es manté el nom del dia.)
+            lliures = [o for o in opc if o['rank'] == ML]
+            if lliures and pt_prec == 13:
+                noms = [o['nom'].split(', ')[0] + (' (ml)' if sigles else '') for o in lliures]
+                titol = noms[0] if len(noms) == 1 else ', '.join(noms[:-1]) + ' i ' + noms[-1]
         desc = []
         if p:
             desc.append(f"Dia litúrgic: {nomt}")
@@ -309,7 +312,7 @@ def genera(raw, anys, propi):
         desc.append(f"Color litúrgic: {COLOR_CA[color]}")
         desc.append(f"Salteri: setmana {SALT.get(info['psalter'], '—')}")
         desc.append(f"Cicle dominical: {CICLE[info['sunCycle']]} · Cicle ferial: {CICLE[info['wkCycle']]}")
-        dies.append(dict(data=d, titol=f"{EMOJI[color]} {titol}", desc='\n'.join(desc)))
+        dies.append(dict(data=d, titol=(f"{EMOJI[color]} " if emojis else '') + titol, desc='\n'.join(desc)))
         d += td(1)
 
     # ---- franges dels temps litúrgics i inici de cada any
@@ -331,5 +334,6 @@ def genera(raw, anys, propi):
             ("⚪ Temps de Pasqua", P, pent),
             ("🟢 Temps de durant l'any (2a part)", pent + td(1), advent1(y) - td(1)),
         ]:
+            nom = nom if emojis else nom.split(' ', 1)[1]
             trams.append(dict(nom=f"{nom} · curs {curs} ({cic})", ini=a, fi=b))
     return dies, trams, avisos
