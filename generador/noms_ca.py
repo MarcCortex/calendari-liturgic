@@ -243,3 +243,21 @@ NOMS = {
  "thomas_becket_bishop": "Sant Tomàs Becket, bisbe i màrtir",
  "sylvester_i_pope": "Sant Silvestre I, papa",
 }
+
+# Correccions de noms en castellà de romcal (la resta es fan servir tal com vénen)
+NOMS_ES = {
+ "joseph_spouse_of_mary": "San José, esposo de la Bienaventurada Virgen María",
+ "annunciation_of_the_lord": "La Anunciación del Señor",
+ "presentation_of_the_lord": "La Presentación del Señor",
+ "transfiguration_of_the_lord": "La Transfiguración del Señor",
+ "nativity_of_john_the_baptist": "La Natividad de San Juan Bautista",
+ "immaculate_conception_of_the_blessed_virgin_mary": "La Inmaculada Concepción de la Bienaventurada Virgen María",
+ "thomas_aquinas_priest": "Santo Tomás de Aquino, presbítero y doctor de la Iglesia",
+ "cornelius_i_pope_and_cyprian_of_carthage_bishop_martyrs": "San Cornelio, papa, y San Cipriano, obispo, mártires",
+ "our_lady_of_sorrows": "Nuestra Señora de los Dolores",
+ "our_lady_of_the_rosary": "Nuestra Señora del Rosario",
+ "queenship_of_the_blessed_virgin_mary": "Santa María, Reina",
+ "anthony_of_egypt_abbot": "San Antonio, abad",
+ "our_lady_of_mount_carmel": "Nuestra Señora del Carmen",
+ "stephen_the_first_martyr": "San Esteban, protomártir",
+}

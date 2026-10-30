@@ -41,7 +41,7 @@
 <body>
 <main>
   <h1>Calendari litúrgic · Calendario litúrgico</h1>
-  <p class="sub" id="info">Calendari litúrgic i dates del Camí Neocatecumenal · Calendario litúrgico y fechas del Camino Neocatecumenal.</p>
+  <p class="sub" id="info"></p>
 
   <div id="calendaris"></div>
 
@@ -74,10 +74,10 @@
 <script>
   const CALS = [
     { fitxer: 'liturgia-i-cami.ics', nom: 'Català',
-      desc: "Calendari litúrgic i dates del Camí Neocatecumenal. Cada dia amb la celebració o els sants; en obrir-lo, el temps, la setmana, el grau i el color litúrgic. Propi d'Espanya, de Catalunya i de la diòcesi de Sant Feliu de Llobregat.",
+      desc: "Calendari litúrgic. Cada dia amb la celebració o els sants; en obrir-lo, el temps, la setmana, el grau i el color litúrgic.",
       google: 'Afegeix a Google Calendar', copia: "Copia l'enllaç", copiat: 'Copiat ✓' },
     { fitxer: 'calendario-es.ics', nom: 'Castellano',
-      desc: 'Calendario litúrgico y fechas del Camino Neocatecumenal. Cada día con la celebración o los santos; al abrirlo, el tiempo, la semana, el grado y el color litúrgico. Propio de España, de Cataluña y de la diócesis de Sant Feliu de Llobregat.',
+      desc: 'Calendario litúrgico. Cada día con la celebración o los santos; al abrirlo, el tiempo, la semana, el grado y el color litúrgico.',
       google: 'Añadir a Google Calendar', copia: 'Copiar enlace', copiat: 'Copiado ✓' },
   ];
   const base = new URL('.', location.href);
@@ -116,7 +116,7 @@
   }
   fetch('info.json', { cache: 'no-store' }).then(r => r.json()).then(i => {
     document.getElementById('info').textContent =
-      `Calendari litúrgic i dates del Camí Neocatecumenal · Calendario litúrgico y fechas del Camino Neocatecumenal. ${i.cursos.join(', ')} (${i.inici} – ${i.fi}).`;
+      `Cursos ${i.cursos.join(', ')} (${i.inici} – ${i.fi})`;
     document.getElementById('peu').textContent =
       (i.autor ? `Elaborat per · Elaborado por ${i.autor}. ` : '') + `${i.generat}.`;
   }).catch(() => {});

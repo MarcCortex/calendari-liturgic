@@ -32,7 +32,7 @@
   titol_es: "🎂 Nacimiento de Carmen Hernández ({n} aniversario)"
   descripcio: Carmen Hernández Barrera va néixer a Ólvega (Sòria) el 24 de novembre de 1930.
   descripcio_es: Carmen Hernández Barrera nació en Ólvega (Soria) el 24 de noviembre de 1930.
-  font: https://en.wikipedia.org/wiki/Carmen_Hern%C3%A1ndez
+  font: https://neocatechumenaleiter.org/historia/carmen-hernandez/
 
 - data: 2022-12-04
   titol: "📜 Obertura de la causa de beatificació de Carmen Hernández ({n} aniversari)"
@@ -65,7 +65,7 @@
   descripcio_es: >-
     Francisco (Kiko) Argüello, iniciador del Camino Neocatecumenal, nació en León
     el 9 de enero de 1939.
-  font: https://en.wikipedia.org/wiki/Kiko_Arg%C3%BCello
+  font: https://neocatechumenaleiter.org/historia/kiko-arguello/
 
 - data: 2002-06-29
   titol: "📘 Aprovació ad experimentum dels Estatuts del Camí ({n} aniversari)"
@@ -104,44 +104,113 @@
     Con la carta «Ogni qualvolta» del 30 de agosto de 1990, Juan Pablo II reconoció
     el Camino Neocatecumenal como un itinerario de formación católica válido
     para la sociedad y los tiempos actuales.
-  font: https://en.wikipedia.org/wiki/Kiko_Arg%C3%BCello
+  font: https://neocatechumenaleiter.org/historia/kiko-arguello/
 
-- data: 2012-01-20
+- data: 2012-01-08
   titol: "🕊️ Aprovació de les celebracions del Camí ({n} aniversari)"
   titol_es: "🕊️ Aprobación de las celebraciones del Camino ({n} aniversario)"
   descripcio: >-
-    El gener de 2012 la Santa Seu va fer públic el decret del Pontifici Consell per als Laics
-    que aprova les celebracions del Directori catequètic del Camí.
-    El 20 de gener de 2012 Benet XVI va rebre el Camí en audiència a l'Aula Pau VI.
+    El 8 de gener de 2012 la Santa Seu va aprovar les celebracions contingudes en el Directori
+    catequètic del Camí Neocatecumenal. El 20 de gener de 2012 Benet XVI va rebre el Camí
+    en audiència a l'Aula Pau VI.
   descripcio_es: >-
-    En enero de 2012 la Santa Sede hizo público el decreto del Pontificio Consejo para los Laicos
-    que aprueba las celebraciones del Directorio catequético del Camino.
-    El 20 de enero de 2012 Benedicto XVI recibió al Camino en audiencia en el Aula Pablo VI.
-  font: https://www.vatican.va/content/benedict-xvi/es/speeches/2012/january/documents/hf_ben-xvi_spe_20120120_cammino-neocatecumenale.html
+    El 8 de enero de 2012 la Santa Sede aprobó las celebraciones contenidas en el Directorio
+    catequético del Camino Neocatecumenal. El 20 de enero de 2012 Benedicto XVI recibió al Camino
+    en audiencia en el Aula Pablo VI.
+  font: https://neocatechumenaleiter.org/historia/kiko-arguello/
 
-- data: 1941-09-19
+- data: 1942-09-19
   titol: "🎂 Naixement del P. Mario Pezzi ({n} aniversari)"
   titol_es: "🎂 Nacimiento del P. Mario Pezzi ({n} aniversario)"
   descripcio: >-
     El P. Mario Pezzi, prevere de l'Equip responsable internacional del Camí Neocatecumenal
     juntament amb Kiko Argüello (i amb Carmen Hernández fins al 2016), va néixer
-    a Gottolengo (Brescia, Itàlia) el 19 de setembre de 1941.
+    a Gottolengo (Brescia, Itàlia) el 19 de setembre de 1942.
   descripcio_es: >-
     El P. Mario Pezzi, presbítero del Equipo responsable internacional del Camino Neocatecumenal
     junto con Kiko Argüello (y con Carmen Hernández hasta 2016), nació
-    en Gottolengo (Brescia, Italia) el 19 de septiembre de 1941.
-  font: https://en.wikipedia.org/wiki/Mario_Pezzi_(priest)
+    en Gottolengo (Brescia, Italia) el 19 de septiembre de 1942.
+  font: https://neocatechumenaleiter.org/historia/mario-pezzi/
 
-- data: 1969-03-18
+- data: 1969-03-19
   titol: "⛪ Ordenació sacerdotal del P. Mario Pezzi ({n} aniversari)"
   titol_es: "⛪ Ordenación sacerdotal del P. Mario Pezzi ({n} aniversario)"
   descripcio: >-
-    El P. Mario Pezzi va ser ordenat prevere el 18 de març de 1969, com a missioner comboni.
-    El 1970 va entrar al Camí Neocatecumenal i des del 1971 forma part de l'Equip responsable internacional.
+    El P. Mario Pezzi va ser ordenat prevere el 19 de març de 1969, com a missioner comboni.
+    El gener del 1970 va entrar a la primera comunitat de la parròquia de San Giovanni di Dio (Roma),
+    el juny del 1971 Kiko i Carmen el van convidar a formar part de l'equip i el 2008 la Santa Seu
+    el va nomenar prevere de l'Equip internacional.
   descripcio_es: >-
-    El P. Mario Pezzi fue ordenado presbítero el 18 de marzo de 1969, como misionero comboniano.
-    En 1970 entró en el Camino Neocatecumenal y desde 1971 forma parte del Equipo responsable internacional.
-  font: https://en.wikipedia.org/wiki/Mario_Pezzi_(priest)
+    El P. Mario Pezzi fue ordenado presbítero el 19 de marzo de 1969, como misionero comboniano.
+    En enero de 1970 entró en la primera comunidad de la parroquia de San Giovanni di Dio (Roma),
+    en junio de 1971 Kiko y Carmen lo invitaron a formar parte del equipo y en 2008 la Santa Sede
+    lo nombró presbítero del Equipo internacional.
+  font: https://neocatechumenaleiter.org/historia/mario-pezzi/
+
+- data: 1965-08-28
+  titol: "🏚️ Palomeras: l'arquebisbe de Madrid atura l'enderroc de les barraques ({n} aniversari)"
+  titol_es: "🏚️ Palomeras: el arzobispo de Madrid detiene el derribo de las chabolas ({n} aniversario)"
+  descripcio: >-
+    El 28 d'agost de 1965 una ordre governativa va disposar que la Guàrdia Civil enderroqués les barraques
+    de Palomeras Altas (Madrid), on vivien Kiko i Carmen entre els pobres. L'arquebisbe de Madrid
+    va aturar l'enderroc.
+  descripcio_es: >-
+    El 28 de agosto de 1965 una orden gubernativa dispuso que la Guardia Civil derribara las chabolas
+    de Palomeras Altas (Madrid), donde vivían Kiko y Carmen entre los pobres. El arzobispo de Madrid
+    detuvo el derribo.
+  font: https://neocatechumenaleiter.org/historia/kiko-arguello/
+
+- data: 1974-05-08
+  titol: "🙏 Primera benedicció de Pau VI al Camí ({n} aniversari)"
+  titol_es: "🙏 Primera bendición de Pablo VI al Camino ({n} aniversario)"
+  descripcio: El 8 de maig de 1974, en una audiència, sant Pau VI va donar la primera benedicció oficial al Camí Neocatecumenal.
+  descripcio_es: El 8 de mayo de 1974, en una audiencia, san Pablo VI dio la primera bendición oficial al Camino Neocatecumenal.
+  font: https://neocatechumenaleiter.org/historia/kiko-arguello/
+
+- data: 1977-01-12
+  titol: "🙏 Discurs de Pau VI dedicat al Camí ({n} aniversari)"
+  titol_es: "🙏 Discurso de Pablo VI dedicado al Camino ({n} aniversario)"
+  descripcio: El 12 de gener de 1977, en una audiència, sant Pau VI va dedicar el seu discurs sencer al Camí Neocatecumenal.
+  descripcio_es: El 12 de enero de 1977, en una audiencia, san Pablo VI dedicó su discurso entero al Camino Neocatecumenal.
+  font: https://neocatechumenaleiter.org/historia/kiko-arguello/
+
+- data: 1988-02-14
+  titol: "⛪ Primer seminari Redemptoris Mater, a Roma ({n} aniversari)"
+  titol_es: "⛪ Primer seminario Redemptoris Mater, en Roma ({n} aniversario)"
+  descripcio: El 14 de febrer de 1988 es va erigir a Roma el primer seminari diocesà missioner Redemptoris Mater.
+  descripcio_es: El 14 de febrero de 1988 se erigió en Roma el primer seminario diocesano misionero Redemptoris Mater.
+  font: https://neocatechumenaleiter.org/historia/kiko-arguello/
+
+- data: 2010-12-26
+  titol: "📘 Aprovació del Directori catequètic del Camí ({n} aniversari)"
+  titol_es: "📘 Aprobación del Directorio catequético del Camino ({n} aniversario)"
+  descripcio: El 26 de desembre de 2010 la Santa Seu va aprovar oficialment el Directori catequètic del Camí Neocatecumenal.
+  descripcio_es: El 26 de diciembre de 2010 la Santa Sede aprobó oficialmente el Directorio catequético del Camino Neocatecumenal.
+  font: https://neocatechumenaleiter.org/historia/kiko-arguello/
+
+- data: 1960-05-27
+  titol: "🎂 Naixement de María Ascensión Romero ({n} aniversari)"
+  titol_es: "🎂 Nacimiento de María Ascensión Romero ({n} aniversario)"
+  descripcio: >-
+    María Ascensión Romero, membre de l'Equip internacional del Camí Neocatecumenal amb Kiko Argüello
+    i el P. Mario Pezzi, va néixer a Tudela (Navarra) el 27 de maig de 1960. Va ser itinerant 25 anys
+    a l'antiga URSS (Bielorússia, Kazakhstan i Rússia).
+  descripcio_es: >-
+    María Ascensión Romero, miembro del Equipo internacional del Camino Neocatecumenal con Kiko Argüello
+    y el P. Mario Pezzi, nació en Tudela (Navarra) el 27 de mayo de 1960. Fue itinerante 25 años
+    en la antigua URSS (Bielorrusia, Kazajistán y Rusia).
+  font: https://neocatechumenaleiter.org/historia/maria-ascension-romero/
+
+- data: 2018-02-02
+  titol: "👥 María Ascensión Romero, membre de l'Equip internacional ({n} aniversari)"
+  titol_es: "👥 María Ascensión Romero, miembro del Equipo internacional ({n} aniversario)"
+  descripcio: >-
+    El 2 de febrer de 2018 María Ascensión Romero va ser nomenada oficialment membre de l'Equip internacional
+    del Camí Neocatecumenal, a petició del Dicasteri per als Laics, la Família i la Vida.
+  descripcio_es: >-
+    El 2 de febrero de 2018 María Ascensión Romero fue nombrada oficialmente miembro del Equipo internacional
+    del Camino Neocatecumenal, a petición del Dicasterio para los Laicos, la Familia y la Vida.
+  font: https://neocatechumenaleiter.org/historia/maria-ascension-romero/
 
 # Exemple d'una data que no es repeteix (treu els # per activar-la):
 # - data: 2027-03-12

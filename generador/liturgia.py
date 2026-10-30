@@ -3,7 +3,7 @@
 import collections
 import datetime as dt
 
-from noms_ca import NOMS
+from noms_ca import NOMS, NOMS_ES
 
 D = dt.date
 td = dt.timedelta
@@ -267,7 +267,7 @@ def genera(raw, anys, propi, emojis=False, sigles=False, lang='ca'):
         k = x['id']
         if lang == 'ca' and k not in NOMS:
             avisos.append(f"Falta el nom en català de «{k}»: es deixa l'identificador.")
-        nom = NOMS.get(k, k.replace('_', ' ')) if lang == 'ca' else (x.get('name') or k)
+        nom = NOMS.get(k, k.replace('_', ' ')) if lang == 'ca' else NOMS_ES.get(k, x.get('name') or k)
         return dict(id=k, nom=nom, rank=x['rank'],
                     prec=5 if k in FESTES_SENYOR else RANK_PREC[x['rank']],
                     color=(x['colors'] or ['WHITE'])[0], font=font)
