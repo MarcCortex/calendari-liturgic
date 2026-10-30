@@ -87,7 +87,8 @@
   for (const c of CALS) {
     const https = new URL(c.fitxer, base).href;
     const webcal = https.replace(/^https?:/, 'webcal:');
-    const google = 'https://calendar.google.com/calendar/r?cid=' + encodeURIComponent(webcal);
+    // Google rep l'adreça https (la mateixa que l'enllaç copiat), així sempre fa servir la mateixa còpia
+    const google = 'https://calendar.google.com/calendar/r?cid=' + encodeURIComponent(https);
     const el = document.createElement('section');
     el.className = 'card';
     el.innerHTML = `
