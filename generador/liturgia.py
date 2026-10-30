@@ -38,106 +38,166 @@ def baptisme(y):
     return d
 
 
-DIES = ['Dilluns', 'Dimarts', 'Dimecres', 'Dijous', 'Divendres', 'Dissabte', 'Diumenge']
+DIES = {'ca': ['Dilluns', 'Dimarts', 'Dimecres', 'Dijous', 'Divendres', 'Dissabte', 'Diumenge'],
+        'es': ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']}
 ROM = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV',
        'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI', 'XXII', 'XXIII', 'XXIV', 'XXV', 'XXVI', 'XXVII',
        'XXVIII', 'XXIX', 'XXX', 'XXXI', 'XXXII', 'XXXIII', 'XXXIV']
-ORD_DIA = {26: '2n', 27: '3r', 28: '4t', 29: '5è', 30: '6è', 31: '7è'}
-DA = "Durant l'any"
+ORD_DIA = {'ca': {26: '2n', 27: '3r', 28: '4t', 29: '5è', 30: '6è', 31: '7è'},
+           'es': {26: '2.º', 27: '3.º', 28: '4.º', 29: '5.º', 30: '6.º', 31: '7.º'}}
+
+# Textos del propi del temps. {k}: número de setmana; {r}: número romà; {dia}: dia de la setmana; {n}: dia del mes
+T = {
+ 'ca': dict(
+    advent='Advent', nadal='Nadal', da="Durant l'any", quaresma='Quaresma', tridu='Tridu Pasqual', pasqua='Pasqua',
+    s_advent="Setmana {r} d'Advent", s_da="Setmana {r} de durant l'any", s_quaresma="Setmana {r} de Quaresma",
+    s_pasqua="Setmana {r} de Pasqua", oct_nadal='Octava de Nadal', t_nadal='Temps de Nadal',
+    inici_quaresma='Inici de la Quaresma', setmana_santa='Setmana Santa', oct_pasqua='Octava de Pasqua',
+    cloenda_pasqua='Cloenda del temps de Pasqua',
+    diu_advent="Diumenge {r} d'Advent", gaudete=' (Gaudete)', feria_priv="Fèria privilegiada d'Advent ({n} de desembre)",
+    feria_advent="{dia} de la setmana {r} d'Advent",
+    nadal_dia='La Nativitat del Senyor (Nadal)', mare_deu='Santa Maria, Mare de Déu (Octava de Nadal)',
+    epifania="L'Epifania del Senyor", baptisme='El Baptisme del Senyor',
+    sagrada_familia='La Sagrada Família de Jesús, Maria i Josep', octava_nadal="{o} dia de l'octava de Nadal",
+    diu2_nadal='Diumenge II després de Nadal', feria_gener='Fèria del temps de Nadal ({n} de gener)',
+    post_epifania="{dia} després de l'Epifania",
+    diu_da="Diumenge {r} de durant l'any", paraula=' · Diumenge de la Paraula de Déu',
+    feria_da="{dia} de la setmana {r} de durant l'any",
+    cendra='Dimecres de Cendra', post_cendra='{dia} després de Cendra', rams='Diumenge de Rams de la Passió del Senyor',
+    set_santa='{dia} Sant', diu_quaresma='Diumenge {r} de Quaresma', laetare=' (Laetare)',
+    feria_quaresma='{dia} de la setmana {r} de Quaresma',
+    dijous_sant='Dijous Sant · Missa vespertina de la Cena del Senyor (inici del Tridu Pasqual)',
+    divendres_sant='Divendres Sant de la Passió del Senyor', dissabte_sant='Dissabte Sant · Vetlla Pasqual',
+    diu_pasqua='Diumenge de Pasqua de la Resurrecció del Senyor', pentecosta='Diumenge de Pentecosta',
+    ascensio="L'Ascensió del Senyor (Diumenge VII de Pasqua)", octava_pasqua="{dia} de l'octava de Pasqua",
+    diu_pasqua_n='Diumenge {r} de Pasqua', misericordia=' (de la Divina Misericòrdia)',
+    feria_pasqua='{dia} de la setmana {r} de Pasqua',
+    trinitat='La Santíssima Trinitat', corpus='El Santíssim Cos i Sang de Crist', sagrat_cor='El Sagrat Cor de Jesús',
+    crist_rei="Jesucrist, Rei de l'Univers (Diumenge XXXIV de durant l'any)"),
+ 'es': dict(
+    advent='Adviento', nadal='Navidad', da='Tiempo Ordinario', quaresma='Cuaresma', tridu='Triduo Pascual', pasqua='Pascua',
+    s_advent='Semana {r} de Adviento', s_da='Semana {r} del Tiempo Ordinario', s_quaresma='Semana {r} de Cuaresma',
+    s_pasqua='Semana {r} de Pascua', oct_nadal='Octava de Navidad', t_nadal='Tiempo de Navidad',
+    inici_quaresma='Inicio de la Cuaresma', setmana_santa='Semana Santa', oct_pasqua='Octava de Pascua',
+    cloenda_pasqua='Final del tiempo de Pascua',
+    diu_advent='Domingo {r} de Adviento', gaudete=' (Gaudete)', feria_priv='Feria privilegiada de Adviento ({n} de diciembre)',
+    feria_advent='{dia} de la semana {r} de Adviento',
+    nadal_dia='La Natividad del Señor (Navidad)', mare_deu='Santa María, Madre de Dios (Octava de Navidad)',
+    epifania='La Epifanía del Señor', baptisme='El Bautismo del Señor',
+    sagrada_familia='La Sagrada Familia de Jesús, María y José', octava_nadal='{o} día de la octava de Navidad',
+    diu2_nadal='Domingo II después de Navidad', feria_gener='Feria del tiempo de Navidad ({n} de enero)',
+    post_epifania='{dia} después de la Epifanía',
+    diu_da='Domingo {r} del Tiempo Ordinario', paraula=' · Domingo de la Palabra de Dios',
+    feria_da='{dia} de la semana {r} del Tiempo Ordinario',
+    cendra='Miércoles de Ceniza', post_cendra='{dia} después de Ceniza', rams='Domingo de Ramos en la Pasión del Señor',
+    set_santa='{dia} Santo', diu_quaresma='Domingo {r} de Cuaresma', laetare=' (Laetare)',
+    feria_quaresma='{dia} de la semana {r} de Cuaresma',
+    dijous_sant='Jueves Santo · Misa vespertina de la Cena del Señor (inicio del Triduo Pascual)',
+    divendres_sant='Viernes Santo de la Pasión del Señor', dissabte_sant='Sábado Santo · Vigilia Pascual',
+    diu_pasqua='Domingo de Pascua de la Resurrección del Señor', pentecosta='Domingo de Pentecostés',
+    ascensio='La Ascensión del Señor (Domingo VII de Pascua)', octava_pasqua='{dia} de la octava de Pascua',
+    diu_pasqua_n='Domingo {r} de Pascua', misericordia=' (de la Divina Misericordia)',
+    feria_pasqua='{dia} de la semana {r} de Pascua',
+    trinitat='La Santísima Trinidad', corpus='El Santísimo Cuerpo y Sangre de Cristo', sagrat_cor='El Sagrado Corazón de Jesús',
+    crist_rei='Jesucristo, Rey del Universo (Domingo XXXIV del Tiempo Ordinario)'),
+}
 
 
-def propi_del_temps(d):
-    """(temps, nom, precedència, color, setmana, clau). Precedència segons la taula de les
+def propi_del_temps(d, lang='ca'):
+    """(temps, nom, precedència, color, setmana, tipus). Precedència segons la taula de les
     Normes universals: 1 Tridu; 2 Nadal, Epifania, Ascensió, Pentecosta, diumenges d'Advent,
     Quaresma i Pasqua, Cendra, Setmana Santa, octava de Pasqua; 3 solemnitats; 5 festes del Senyor;
     6 diumenges de Nadal i de durant l'any; 9 fèries privilegiades; 13 fèries."""
+    t = T[lang]
     y = any_liturgic(d)
     A1 = advent1(y - 1); nadal = D(y - 1, 12, 25); ep = D(y, 1, 6); bapt = baptisme(y)
     P = pasqua(y); cendra = P - td(46); pent = P + td(49); rei = advent1(y) - td(7)
-    dw = d.weekday(); dia = DIES[dw]
+    dw = d.weekday(); dia = DIES[lang][dw]
 
     if A1 <= d < nadal:
         k = (d - A1).days // 7 + 1
+        setm = t['s_advent'].format(k=k, r=ROM[k])
         if dw == 6:
-            nom = f"Diumenge {ROM[k]} d'Advent" + (' (Gaudete)' if k == 3 else '')
-            return ('Advent', nom, 2, 'ROSE' if k == 3 else 'PURPLE', f"{k}a setmana d'Advent", 'diumenge')
+            nom = t['diu_advent'].format(r=ROM[k]) + (t['gaudete'] if k == 3 else '')
+            return (t['advent'], nom, 2, 'ROSE' if k == 3 else 'PURPLE', setm, 'diumenge')
         if d.month == 12 and d.day >= 17:
-            return ('Advent', f"Fèria privilegiada d'Advent ({d.day} de desembre)", 9, 'PURPLE', f"{k}a setmana d'Advent", 'feria')
-        return ('Advent', f"{dia} de la {k}a setmana d'Advent", 13, 'PURPLE', f"{k}a setmana d'Advent", 'feria')
+            return (t['advent'], t['feria_priv'].format(n=d.day), 9, 'PURPLE', setm, 'feria')
+        return (t['advent'], t['feria_advent'].format(dia=dia, k=k, r=ROM[k]), 13, 'PURPLE', setm, 'feria')
     if nadal <= d <= bapt:
         if d == nadal:
-            return ('Nadal', 'La Nativitat del Senyor (Nadal)', 2, 'WHITE', 'Octava de Nadal', 'solemnitat')
+            return (t['nadal'], t['nadal_dia'], 2, 'WHITE', t['oct_nadal'], 'solemnitat')
         if d == D(y, 1, 1):
-            return ('Nadal', 'Santa Maria, Mare de Déu (Octava de Nadal)', 3, 'WHITE', 'Octava de Nadal', 'solemnitat')
+            return (t['nadal'], t['mare_deu'], 3, 'WHITE', t['oct_nadal'], 'solemnitat')
         if d == ep:
-            return ('Nadal', "L'Epifania del Senyor", 2, 'WHITE', 'Temps de Nadal', 'solemnitat')
+            return (t['nadal'], t['epifania'], 2, 'WHITE', t['t_nadal'], 'solemnitat')
         if d == bapt:
-            return ('Nadal', 'El Baptisme del Senyor', 5, 'WHITE', 'Temps de Nadal', 'festa')
+            return (t['nadal'], t['baptisme'], 5, 'WHITE', t['t_nadal'], 'festa')
         sf = next((nadal + td(i) for i in range(1, 7) if (nadal + td(i)).weekday() == 6), D(y - 1, 12, 30))
         if d == sf:
-            return ('Nadal', 'La Sagrada Família de Jesús, Maria i Josep', 5, 'WHITE', 'Octava de Nadal', 'festa')
+            return (t['nadal'], t['sagrada_familia'], 5, 'WHITE', t['oct_nadal'], 'festa')
         if d.month == 12:
-            return ('Nadal', f"{ORD_DIA[d.day]} dia de l'octava de Nadal", 9, 'WHITE', 'Octava de Nadal', 'feria')
+            return (t['nadal'], t['octava_nadal'].format(o=ORD_DIA[lang][d.day]), 9, 'WHITE', t['oct_nadal'], 'feria')
         if d < ep:
             if dw == 6:
-                return ('Nadal', 'Diumenge II després de Nadal', 6, 'WHITE', 'Temps de Nadal', 'diumenge')
-            return ('Nadal', f"Fèria del temps de Nadal ({d.day} de gener)", 13, 'WHITE', 'Temps de Nadal', 'feria')
-        return ('Nadal', f"{dia} després de l'Epifania", 13, 'WHITE', 'Temps de Nadal', 'feria')
+                return (t['nadal'], t['diu2_nadal'], 6, 'WHITE', t['t_nadal'], 'diumenge')
+            return (t['nadal'], t['feria_gener'].format(n=d.day), 13, 'WHITE', t['t_nadal'], 'feria')
+        return (t['nadal'], t['post_epifania'].format(dia=dia), 13, 'WHITE', t['t_nadal'], 'feria')
     if bapt < d < cendra:
         k = (d - bapt).days // 7 + 1
+        setm = t['s_da'].format(k=k, r=ROM[k])
         if dw == 6:
-            nom = f"Diumenge {ROM[k]} de durant l'any" + (' · Diumenge de la Paraula de Déu' if k == 3 else '')
-            return (DA, nom, 6, 'GREEN', f"{k}a setmana de durant l'any", 'diumenge')
-        return (DA, f"{dia} de la {k}a setmana de durant l'any", 13, 'GREEN', f"{k}a setmana de durant l'any", 'feria')
+            nom = t['diu_da'].format(r=ROM[k]) + (t['paraula'] if k == 3 else '')
+            return (t['da'], nom, 6, 'GREEN', setm, 'diumenge')
+        return (t['da'], t['feria_da'].format(dia=dia, k=k, r=ROM[k]), 13, 'GREEN', setm, 'feria')
     if cendra <= d < P - td(3):
         if d == cendra:
-            return ('Quaresma', 'Dimecres de Cendra', 2, 'PURPLE', 'Inici de la Quaresma', 'feria-priv')
+            return (t['quaresma'], t['cendra'], 2, 'PURPLE', t['inici_quaresma'], 'feria-priv')
         if d < cendra + td(4):
-            return ('Quaresma', f'{dia} després de Cendra', 9, 'PURPLE', 'Inici de la Quaresma', 'feria')
+            return (t['quaresma'], t['post_cendra'].format(dia=dia), 9, 'PURPLE', t['inici_quaresma'], 'feria')
         k = (d - (cendra + td(4))).days // 7 + 1
         if k == 6:
             if dw == 6:
-                return ('Quaresma', 'Diumenge de Rams de la Passió del Senyor', 2, 'RED', 'Setmana Santa', 'diumenge')
-            return ('Quaresma', f'{dia} Sant', 2, 'PURPLE', 'Setmana Santa', 'feria-priv')
+                return (t['quaresma'], t['rams'], 2, 'RED', t['setmana_santa'], 'diumenge')
+            return (t['quaresma'], t['set_santa'].format(dia=dia), 2, 'PURPLE', t['setmana_santa'], 'feria-priv')
+        setm = t['s_quaresma'].format(k=k, r=ROM[k])
         if dw == 6:
-            nom = f"Diumenge {ROM[k]} de Quaresma" + (' (Laetare)' if k == 4 else '')
-            return ('Quaresma', nom, 2, 'ROSE' if k == 4 else 'PURPLE', f"{k}a setmana de Quaresma", 'diumenge')
-        return ('Quaresma', f"{dia} de la {k}a setmana de Quaresma", 9, 'PURPLE', f"{k}a setmana de Quaresma", 'feria')
+            nom = t['diu_quaresma'].format(r=ROM[k]) + (t['laetare'] if k == 4 else '')
+            return (t['quaresma'], nom, 2, 'ROSE' if k == 4 else 'PURPLE', setm, 'diumenge')
+        return (t['quaresma'], t['feria_quaresma'].format(dia=dia, k=k, r=ROM[k]), 9, 'PURPLE', setm, 'feria')
     if P - td(3) <= d <= P:
-        noms = {3: ('Dijous Sant · Missa vespertina de la Cena del Senyor (inici del Tridu Pasqual)', 'WHITE'),
-                2: ('Divendres Sant de la Passió del Senyor', 'RED'),
-                1: ('Dissabte Sant · Vetlla Pasqual', 'WHITE'),
-                0: ('Diumenge de Pasqua de la Resurrecció del Senyor', 'WHITE')}
+        noms = {3: (t['dijous_sant'], 'WHITE'), 2: (t['divendres_sant'], 'RED'),
+                1: (t['dissabte_sant'], 'WHITE'), 0: (t['diu_pasqua'], 'WHITE')}
         n, c = noms[(P - d).days]
         if d == P:
-            return ('Pasqua', n, 1, c, 'Octava de Pasqua', 'solemnitat')
-        return ('Tridu Pasqual', n, 1, c, 'Tridu Pasqual', 'tridu')
+            return (t['pasqua'], n, 1, c, t['oct_pasqua'], 'solemnitat')
+        return (t['tridu'], n, 1, c, t['tridu'], 'tridu')
     if P < d <= pent:
         k = (d - P).days // 7 + 1
         if d == pent:
-            return ('Pasqua', 'Diumenge de Pentecosta', 2, 'RED', 'Cloenda del temps de Pasqua', 'solemnitat')
+            return (t['pasqua'], t['pentecosta'], 2, 'RED', t['cloenda_pasqua'], 'solemnitat')
         if d == P + td(42):
-            return ('Pasqua', "L'Ascensió del Senyor (Diumenge VII de Pasqua)", 2, 'WHITE', '7a setmana de Pasqua', 'solemnitat')
+            return (t['pasqua'], t['ascensio'], 2, 'WHITE', t['s_pasqua'].format(k=7, r='VII'), 'solemnitat')
         if k == 1:
-            return ('Pasqua', f"{dia} de l'octava de Pasqua", 2, 'WHITE', 'Octava de Pasqua', 'octava')
+            return (t['pasqua'], t['octava_pasqua'].format(dia=dia), 2, 'WHITE', t['oct_pasqua'], 'octava')
+        setm = t['s_pasqua'].format(k=k, r=ROM[k])
         if dw == 6:
-            nom = f"Diumenge {ROM[k]} de Pasqua" + (' (de la Divina Misericòrdia)' if k == 2 else '')
-            return ('Pasqua', nom, 2, 'WHITE', f"{k}a setmana de Pasqua", 'diumenge')
-        return ('Pasqua', f"{dia} de la {k}a setmana de Pasqua", 13, 'WHITE', f"{k}a setmana de Pasqua", 'feria')
+            nom = t['diu_pasqua_n'].format(r=ROM[k]) + (t['misericordia'] if k == 2 else '')
+            return (t['pasqua'], nom, 2, 'WHITE', setm, 'diumenge')
+        return (t['pasqua'], t['feria_pasqua'].format(dia=dia, k=k, r=ROM[k]), 13, 'WHITE', setm, 'feria')
     diu = d - td((dw + 1) % 7)
     k = 34 - (rei - diu).days // 7
-    setm = f"{k}a setmana de durant l'any"
+    setm = t['s_da'].format(k=k, r=ROM[k])
     if d == pent + td(7):
-        return (DA, 'La Santíssima Trinitat', 3, 'WHITE', setm, 'solemnitat')
+        return (t['da'], t['trinitat'], 3, 'WHITE', setm, 'solemnitat')
     if d == pent + td(14):
-        return (DA, 'El Santíssim Cos i Sang de Crist', 3, 'WHITE', setm, 'solemnitat')
+        return (t['da'], t['corpus'], 3, 'WHITE', setm, 'solemnitat')
     if d == pent + td(19):
-        return (DA, 'El Sagrat Cor de Jesús', 3, 'WHITE', setm, 'solemnitat')
+        return (t['da'], t['sagrat_cor'], 3, 'WHITE', setm, 'solemnitat')
     if d == rei:
-        return (DA, "Jesucrist, Rei de l'Univers (Diumenge XXXIV de durant l'any)", 3, 'WHITE', setm, 'solemnitat')
+        return (t['da'], t['crist_rei'], 3, 'WHITE', setm, 'solemnitat')
     if dw == 6:
-        return (DA, f"Diumenge {ROM[k]} de durant l'any", 6, 'GREEN', setm, 'diumenge')
-    return (DA, f"{dia} de la {k}a setmana de durant l'any", 13, 'GREEN', setm, 'feria')
+        return (t['da'], t['diu_da'].format(r=ROM[k]), 6, 'GREEN', setm, 'diumenge')
+    return (t['da'], t['feria_da'].format(dia=dia, k=k, r=ROM[k]), 13, 'GREEN', setm, 'feria')
 
 
 # ------------------------------------------------------------------ santoral
@@ -153,21 +213,50 @@ GRAU_PROPI = {'solemnitat': (S, 4), 'festa': (F, 8), 'memoria': (M, 11), 'memori
               'tempores': (TEMP, 12.5)}
 COLOR_EN = {'blanc': 'WHITE', 'vermell': 'RED', 'morat': 'PURPLE', 'verd': 'GREEN', None: None}
 
-RANG_CA = {S: 'Solemnitat', F: 'Festa', M: 'Memòria obligatòria', ML: 'Memòria lliure',
-           COM: 'Commemoració', TEMP: "Témpores (celebració pròpia d'Espanya)"}
 SIGLA = {S: 'S', F: 'F', M: 'M', ML: 'ml', COM: 'comm.', TEMP: ''}
-COLOR_CA = {'WHITE': 'blanc', 'GREEN': 'verd', 'RED': 'vermell', 'PURPLE': 'morat', 'ROSE': 'rosat (o morat)'}
 EMOJI = {'WHITE': '⚪', 'GREEN': '🟢', 'RED': '🔴', 'PURPLE': '🟣', 'ROSE': '🌸'}
-CICLE = {'YEAR_A': 'A', 'YEAR_B': 'B', 'YEAR_C': 'C', 'YEAR_1': 'I (anys senars)', 'YEAR_2': 'II (anys parells)'}
 SALT = {'WEEK_1': 'I', 'WEEK_2': 'II', 'WEEK_3': 'III', 'WEEK_4': 'IV'}
-GRAU_TEMPS = {'diumenge': 'Diumenge', 'solemnitat': 'Solemnitat', 'festa': 'Festa', 'feria': 'Fèria',
-              'feria-priv': 'Fèria privilegiada', 'octava': 'Octava de Pasqua', 'tridu': 'Tridu Pasqual'}
+# Etiquetes de la descripció, en cada llengua
+E = {
+ 'ca': dict(
+    rang={S: 'Solemnitat', F: 'Festa', M: 'Memòria obligatòria', ML: 'Memòria lliure',
+          COM: 'Commemoració', TEMP: "Témpores (celebració pròpia d'Espanya)"},
+    color={'WHITE': 'blanc', 'GREEN': 'verd', 'RED': 'vermell', 'PURPLE': 'morat', 'ROSE': 'rosat (o morat)'},
+    cicle={'YEAR_A': 'A', 'YEAR_B': 'B', 'YEAR_C': 'C', 'YEAR_1': 'I (anys senars)', 'YEAR_2': 'II (anys parells)'},
+    grau_temps={'diumenge': 'Diumenge', 'solemnitat': 'Solemnitat', 'festa': 'Festa', 'feria': 'Fèria',
+                'feria-priv': 'Fèria privilegiada', 'octava': 'Octava de Pasqua', 'tridu': 'Tridu Pasqual'},
+    difunts='Commemoració (amb precedència de solemnitat)', i=' i ',
+    dia='Dia litúrgic', temps='Temps litúrgic', celebracio='Celebració', color_l='Color litúrgic',
+    salteri='Salteri: setmana', cicle_dom='Cicle dominical', cicle_fer='Cicle ferial',
+    trasllat="Traslladada del {d}/{m} perquè aquell dia coincidia amb «{nom}».",
+    inici_any="Inici de l'any litúrgic {curs} ({cic}).", cic="cicle dominical {a}, cicle ferial {b}",
+    curs='curs', trams=["Temps d'Advent", 'Temps de Nadal', "Temps de durant l'any (1a part)", 'Temps de Quaresma',
+                        'Tridu Pasqual', 'Temps de Pasqua', "Temps de durant l'any (2a part)"],
+    del_al='Del {a} al {b}.'),
+ 'es': dict(
+    rang={S: 'Solemnidad', F: 'Fiesta', M: 'Memoria obligatoria', ML: 'Memoria libre',
+          COM: 'Conmemoración', TEMP: 'Témporas (celebración propia de España)'},
+    color={'WHITE': 'blanco', 'GREEN': 'verde', 'RED': 'rojo', 'PURPLE': 'morado', 'ROSE': 'rosa (o morado)'},
+    cicle={'YEAR_A': 'A', 'YEAR_B': 'B', 'YEAR_C': 'C', 'YEAR_1': 'I (años impares)', 'YEAR_2': 'II (años pares)'},
+    grau_temps={'diumenge': 'Domingo', 'solemnitat': 'Solemnidad', 'festa': 'Fiesta', 'feria': 'Feria',
+                'feria-priv': 'Feria privilegiada', 'octava': 'Octava de Pascua', 'tridu': 'Triduo Pascual'},
+    difunts='Conmemoración (con precedencia de solemnidad)', i=' y ',
+    dia='Día litúrgico', temps='Tiempo litúrgico', celebracio='Celebración', color_l='Color litúrgico',
+    salteri='Salterio: semana', cicle_dom='Ciclo dominical', cicle_fer='Ciclo ferial',
+    trasllat='Trasladada del {d}/{m} porque ese día coincidía con «{nom}».',
+    inici_any='Inicio del año litúrgico {curs} ({cic}).', cic='ciclo dominical {a}, ciclo ferial {b}',
+    curs='curso', trams=['Tiempo de Adviento', 'Tiempo de Navidad', 'Tiempo Ordinario (1.ª parte)', 'Tiempo de Cuaresma',
+                         'Triduo Pascual', 'Tiempo de Pascua', 'Tiempo Ordinario (2.ª parte)'],
+    del_al='Del {a} al {b}.'),
+}
 
 
-def genera(raw, anys, propi, emojis=False, sigles=False):
+def genera(raw, anys, propi, emojis=False, sigles=False, lang='ca'):
     """raw: sortida de romcal_dump.mjs; anys: anys litúrgics (any final) consecutius;
     propi: llista de dades/propi.yaml. Retorna (dies, trams, avisos)."""
     INICI, FI = advent1(anys[0] - 1), advent1(anys[-1]) - td(1)
+    L = E[lang]
+    pdt = lambda dd: propi_del_temps(dd, lang)  # noqa: E731
     avisos = []
     per_dia = collections.defaultdict(list)
     info_dia = {}
@@ -176,9 +265,10 @@ def genera(raw, anys, propi, emojis=False, sigles=False):
 
     def entrada(x, font='romcal'):
         k = x['id']
-        if k not in NOMS:
+        if lang == 'ca' and k not in NOMS:
             avisos.append(f"Falta el nom en català de «{k}»: es deixa l'identificador.")
-        return dict(id=k, nom=NOMS.get(k, k.replace('_', ' ')), rank=x['rank'],
+        nom = NOMS.get(k, k.replace('_', ' ')) if lang == 'ca' else (x.get('name') or k)
+        return dict(id=k, nom=nom, rank=x['rank'],
                     prec=5 if k in FESTES_SENYOR else RANK_PREC[x['rank']],
                     color=(x['colors'] or ['WHITE'])[0], font=font)
 
@@ -193,7 +283,7 @@ def genera(raw, anys, propi, emojis=False, sigles=False):
             per_dia[dd].append(entrada(x))
 
     def afegeix(dd, ent):
-        p = ent['prec']; pt = propi_del_temps(dd)
+        p = ent['prec']; pt = pdt(dd)
         cur = min([pt[2]] + [e['prec'] for e in per_dia[dd] if e['rank'] in (S, F, M)])
         r = ent['rank']
         if r == S:
@@ -201,9 +291,9 @@ def genera(raw, anys, propi, emojis=False, sigles=False):
                 per_dia[dd] = [ent]
                 return
             n = dd + td(1)
-            while min([propi_del_temps(n)[2]] + [e['prec'] for e in per_dia[n] if e['rank'] in (S, F)]) <= 8:
+            while min([pdt(n)[2]] + [e['prec'] for e in per_dia[n] if e['rank'] in (S, F)]) <= 8:
                 n += td(1)
-            per_dia[n] = [dict(ent, nota=f"Traslladada del {dd.day}/{dd.month} perquè aquell dia coincidia amb «{pt[1]}».")]
+            per_dia[n] = [dict(ent, nota=L['trasllat'].format(d=dd.day, m=dd.month, nom=pt[1]))]
             avisos.append(f"{ent['nom']}: traslladada del {dd} al {n}.")
         elif r == F:
             if p < cur:
@@ -257,7 +347,7 @@ def genera(raw, anys, propi, emojis=False, sigles=False):
     for i, p in enumerate(propi):
         r, prec = GRAU_PROPI[p['grau']]
         propi_per_data[tuple(map(int, str(p['data']).split('-')))].append(
-            dict(id=f'propi_{i}', nom=p['nom'], rank=r, prec=prec, color=COLOR_EN[p.get('color')], font='propi'))
+            dict(id=f'propi_{i}', nom=(p.get('nom_es') or p['nom']) if lang == 'es' else p['nom'], rank=r, prec=prec, color=COLOR_EN[p.get('color')], font='propi'))
     d = INICI
     while d <= FI:
         for ent in propi_per_data.get((d.month, d.day), []):
@@ -266,7 +356,7 @@ def genera(raw, anys, propi, emojis=False, sigles=False):
 
     # A Quaresma, del 17 al 24 de desembre i a l'octava de Nadal les memòries són commemoracions
     for dd, ents in per_dia.items():
-        if INICI <= dd <= FI and propi_del_temps(dd)[2] == 9:
+        if INICI <= dd <= FI and pdt(dd)[2] == 9:
             for e in ents:
                 if e['rank'] in (M, ML):
                     e['rank'] = COM
@@ -275,7 +365,7 @@ def genera(raw, anys, propi, emojis=False, sigles=False):
     dies = []
     d = INICI
     while d <= FI:
-        temps, nomt, pt_prec, pt_col, setm, tipus = propi_del_temps(d)
+        temps, nomt, pt_prec, pt_col, setm, tipus = pdt(d)
         ents = per_dia[d]
         mems = [e for e in ents if e['rank'] == M]
         if len(mems) > 1 and not [e for e in ents if e['rank'] in (S, F)]:
@@ -289,29 +379,29 @@ def genera(raw, anys, propi, emojis=False, sigles=False):
             p = princ[0]
             titol = p['nom'] + (f" ({SIGLA[p['rank']]})" if sigles and SIGLA[p['rank']] else '')
             color = p['color'] or pt_col
-            grau = RANG_CA[p['rank']]
+            grau = L['rang'][p['rank']]
             if p['id'] == 'commemoration_of_all_the_faithful_departed':
-                titol, grau = p['nom'], 'Commemoració (amb precedència de solemnitat)'
+                titol, grau = p['nom'], L['difunts']
         else:
             p, titol, color = None, nomt, pt_col
-            grau = GRAU_TEMPS[tipus]
+            grau = L['grau_temps'][tipus]
             # Fèria amb memòries lliures: el títol és només el nom dels sants.
             # (A Quaresma i en les fèries privilegiades es manté el nom del dia.)
             lliures = [o for o in opc if o['rank'] == ML]
             if lliures and pt_prec == 13:
                 noms = [o['nom'].split(', ')[0] + (' (ml)' if sigles else '') for o in lliures]
-                titol = noms[0] if len(noms) == 1 else ', '.join(noms[:-1]) + ' i ' + noms[-1]
+                titol = noms[0] if len(noms) == 1 else ', '.join(noms[:-1]) + L['i'] + noms[-1]
         desc = []
         if p:
-            desc.append(f"Dia litúrgic: {nomt}")
-        desc.append(f"Temps litúrgic: {temps} — {setm}")
-        desc.append(f"Celebració: {p['nom'] if p else nomt} — {grau}")
-        desc += [f"{RANG_CA[o['rank']]}: {o['nom']}" for o in opc]
+            desc.append(f"{L['dia']}: {nomt}")
+        desc.append(f"{L['temps']}: {temps} — {setm}")
+        desc.append(f"{L['celebracio']}: {p['nom'] if p else nomt} — {grau}")
+        desc += [f"{L['rang'][o['rank']]}: {o['nom']}" for o in opc]
         if p and p.get('nota'):
             desc.append(p['nota'])
-        desc.append(f"Color litúrgic: {COLOR_CA[color]}")
-        desc.append(f"Salteri: setmana {SALT.get(info['psalter'], '—')}")
-        desc.append(f"Cicle dominical: {CICLE[info['sunCycle']]} · Cicle ferial: {CICLE[info['wkCycle']]}")
+        desc.append(f"{L['color_l']}: {L['color'][color]}")
+        desc.append(f"{L['salteri']} {SALT.get(info['psalter'], '—')}")
+        desc.append(f"{L['cicle_dom']}: {L['cicle'][info['sunCycle']]} · {L['cicle_fer']}: {L['cicle'][info['wkCycle']]}")
         dies.append(dict(data=d, titol=(f"{EMOJI[color]} " if emojis else '') + titol, desc='\n'.join(desc)))
         d += td(1)
 
@@ -323,17 +413,13 @@ def genera(raw, anys, propi, emojis=False, sigles=False):
         cendra = P - td(46); pent = P + td(49)
         info = info_dia[A1]
         curs = f"{y - 1}-{str(y)[2:]}"
-        cic = f"cicle dominical {CICLE[info['sunCycle']]}, cicle ferial {CICLE[info['wkCycle']].split(' ')[0]}"
-        idx[A1]['desc'] = f"Inici de l'any litúrgic {curs} ({cic}).\n" + idx[A1]['desc']
-        for nom, a, b in [
-            ("🟣 Temps d'Advent", A1, D(y - 1, 12, 24)),
-            ("⚪ Temps de Nadal", D(y - 1, 12, 25), bapt),
-            ("🟢 Temps de durant l'any (1a part)", bapt + td(1), cendra - td(1)),
-            ("🟣 Temps de Quaresma", cendra, P - td(3)),
-            ("⚪ Tridu Pasqual", P - td(3), P),
-            ("⚪ Temps de Pasqua", P, pent),
-            ("🟢 Temps de durant l'any (2a part)", pent + td(1), advent1(y) - td(1)),
-        ]:
-            nom = nom if emojis else nom.split(' ', 1)[1]
-            trams.append(dict(nom=f"{nom} · curs {curs} ({cic})", ini=a, fi=b))
+        cic = L['cic'].format(a=L['cicle'][info['sunCycle']], b=L['cicle'][info['wkCycle']].split(' ')[0])
+        idx[A1]['desc'] = L['inici_any'].format(curs=curs, cic=cic) + '\n' + idx[A1]['desc']
+        franges = [(A1, D(y - 1, 12, 24)), (D(y - 1, 12, 25), bapt), (bapt + td(1), cendra - td(1)),
+                   (cendra, P - td(3)), (P - td(3), P), (P, pent), (pent + td(1), advent1(y) - td(1))]
+        colors = ['🟣', '⚪', '🟢', '🟣', '⚪', '⚪', '🟢']
+        for nom, col, (a, b) in zip(L['trams'], colors, franges):
+            nom = f"{col} {nom}" if emojis else nom
+            trams.append(dict(nom=f"{nom} · {L['curs']} {curs} ({cic})", ini=a, fi=b,
+                              desc=L['del_al'].format(a=f"{a:%d/%m/%Y}", b=f"{b:%d/%m/%Y}")))
     return dies, trams, avisos

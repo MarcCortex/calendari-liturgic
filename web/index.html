@@ -32,7 +32,7 @@
          background: transparent; cursor: pointer; font-family: inherit; }
   .btn.primari { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
   .btn.fet { color: var(--ok); border-color: var(--ok); }
-  details { margin-top: 28px; color: var(--muted); }
+  details { margin-top: 20px; color: var(--muted); }
   summary { cursor: pointer; color: var(--text); }
   details ol { padding-left: 20px; }
   footer { margin-top: 32px; font-size: 0.85rem; color: var(--muted); }
@@ -40,8 +40,8 @@
 </head>
 <body>
 <main>
-  <h1>Calendari litúrgic</h1>
-  <p class="sub" id="info">Calendari litúrgic en català i dates del Camí Neocatecumenal.</p>
+  <h1>Calendari litúrgic · Calendario litúrgico</h1>
+  <p class="sub" id="info">Calendari litúrgic i dates del Camí Neocatecumenal · Calendario litúrgico y fechas del Camino Neocatecumenal.</p>
 
   <div id="calendaris"></div>
 
@@ -54,19 +54,31 @@
       <li>Apareixerà a l'esquerra, a <em>Altres calendaris</em>. Des d'allà el pots amagar o canviar-ne el color.
           Al mòbil surt sol si és el mateix compte de Google.</li>
     </ol>
-    <p>Google comprova els canvis pel seu compte, normalment unes quantes vegades al dia.</p>
+    <p>El calendari s'actualitza sol. Google comprova els canvis pel seu compte, normalment unes quantes vegades al dia.</p>
+  </details>
+
+  <details>
+    <summary>¿Cómo me suscribo en Google Calendar?</summary>
+    <ol>
+      <li>Desde el ordenador, pulsa <strong>Añadir a Google Calendar</strong> y confirma.</li>
+      <li>Si no funciona: copia el enlace, abre Google Calendar → <em>Otros calendarios</em> → <strong>+</strong> →
+          <em>Desde URL</em>, pégalo y pulsa <em>Añadir calendario</em>.</li>
+      <li>Aparecerá a la izquierda, en <em>Otros calendarios</em>. Desde allí puedes ocultarlo o cambiarle el color.
+          En el móvil aparece solo si es la misma cuenta de Google.</li>
+    </ol>
+    <p>El calendario se actualiza solo. Google comprueba los cambios por su cuenta, normalmente varias veces al día.</p>
   </details>
 
   <footer id="peu"></footer>
 </main>
 <script>
   const CALS = [
-    { fitxer: 'liturgia.ics', nom: 'Litúrgia',
-      desc: "Cada dia amb la celebració o els sants; en obrir-lo, el temps, la setmana, el grau i el color litúrgic. Propi d'Espanya, de Catalunya i de la diòcesi de Sant Feliu de Llobregat." },
-    { fitxer: 'cami.ics', nom: 'Camí Neocatecumenal',
-      desc: 'Aniversaris i dates del Camí: Carmen Hernández, Kiko Argüello, Estatuts…' },
-    { fitxer: 'liturgia-i-cami.ics', nom: 'Litúrgia i Camí (tot junt)',
-      desc: "Els dos calendaris en un de sol. Si et subscrius a aquest, no et cal cap dels altres dos." },
+    { fitxer: 'liturgia-i-cami.ics', nom: 'Català',
+      desc: "Calendari litúrgic i dates del Camí Neocatecumenal. Cada dia amb la celebració o els sants; en obrir-lo, el temps, la setmana, el grau i el color litúrgic. Propi d'Espanya, de Catalunya i de la diòcesi de Sant Feliu de Llobregat.",
+      google: 'Afegeix a Google Calendar', copia: "Copia l'enllaç", copiat: 'Copiat ✓' },
+    { fitxer: 'calendario-es.ics', nom: 'Castellano',
+      desc: 'Calendario litúrgico y fechas del Camino Neocatecumenal. Cada día con la celebración o los santos; al abrirlo, el tiempo, la semana, el grado y el color litúrgico. Propio de España, de Cataluña y de la diócesis de Sant Feliu de Llobregat.',
+      google: 'Añadir a Google Calendar', copia: 'Copiar enlace', copiat: 'Copiado ✓' },
   ];
   const base = new URL('.', location.href);
   const cont = document.getElementById('calendaris');
@@ -80,33 +92,33 @@
       <h2></h2><p></p>
       <input class="url" readonly>
       <div class="accions">
-        <a class="btn primari" target="_blank" rel="noopener">Afegeix a Google Calendar</a>
-        <button class="btn copia" type="button">Copia l'enllaç</button>
-        <a class="btn">Apple / Outlook</a>
+        <a class="btn primari" target="_blank" rel="noopener"></a>
+        <button class="btn copia" type="button"></button>
+        <a class="btn webcal">Apple / Outlook</a>
       </div>`;
     el.querySelector('h2').textContent = c.nom;
     el.querySelector('p').textContent = c.desc;
     el.querySelector('.url').value = https;
-    el.querySelector('.primari').href = google;
     const slug = c.fitxer.replace('.ics', '');
-    el.querySelector('.primari').dataset.goatcounterClick = 'google-' + slug;
-    el.querySelectorAll('a.btn')[1].dataset.goatcounterClick = 'webcal-' + slug;
-    el.querySelector('.copia').dataset.goatcounterClick = 'copia-' + slug;
-    el.querySelectorAll('a.btn')[1].href = webcal;
+    const g = el.querySelector('.primari');
+    g.href = google; g.textContent = c.google; g.dataset.goatcounterClick = 'google-' + slug;
+    const w = el.querySelector('.webcal');
+    w.href = webcal; w.dataset.goatcounterClick = 'webcal-' + slug;
     const b = el.querySelector('.copia');
+    b.textContent = c.copia; b.dataset.goatcounterClick = 'copia-' + slug;
     b.addEventListener('click', async () => {
       try { await navigator.clipboard.writeText(https); }
       catch { const i = el.querySelector('.url'); i.select(); document.execCommand('copy'); }
-      b.textContent = 'Copiat ✓'; b.classList.add('fet');
-      setTimeout(() => { b.textContent = "Copia l'enllaç"; b.classList.remove('fet'); }, 2000);
+      b.textContent = c.copiat; b.classList.add('fet');
+      setTimeout(() => { b.textContent = c.copia; b.classList.remove('fet'); }, 2000);
     });
     cont.appendChild(el);
   }
   fetch('info.json', { cache: 'no-store' }).then(r => r.json()).then(i => {
     document.getElementById('info').textContent =
-      `Calendari litúrgic en català i dates del Camí Neocatecumenal. Cursos ${i.cursos.join(', ')} (del ${i.inici} al ${i.fi}).`;
+      `Calendari litúrgic i dates del Camí Neocatecumenal · Calendario litúrgico y fechas del Camino Neocatecumenal. ${i.cursos.join(', ')} (${i.inici} – ${i.fi}).`;
     document.getElementById('peu').textContent =
-      (i.autor ? `Calendari elaborat per ${i.autor}. ` : '') + `Actualitzat el ${i.generat}. S'actualitza sol cada mes.`;
+      (i.autor ? `Elaborat per · Elaborado por ${i.autor}. ` : '') + `${i.generat}.`;
   }).catch(() => {});
 </script>
 <!-- GOATCOUNTER -->

@@ -12,7 +12,7 @@ for (const y of anys.map(Number)) {
   const cal = await r.generateCalendar(y);
   for (const [d, evs] of Object.entries(cal)) {
     evs.forEach((e) => out.push({
-      date: d, id: e.id, rank: e.rank, colors: e.colors,
+      date: d, id: e.id, name: e.name, rank: e.rank, colors: e.colors,
       psalter: e.cycles?.psalterWeek, sunCycle: e.cycles?.sundayCycle, wkCycle: e.cycles?.weekdayCycle,
       fromCal: e.fromCalendarId,
     }));

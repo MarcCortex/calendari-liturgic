@@ -1,100 +1,151 @@
 # Dates del Camí Neocatecumenal.
 #
 # Camps:
-#   data:        data original (AAAA-MM-DD)
-#   titol:       títol de l'esdeveniment. Si s'escriu {n}, es substitueix per l'ordinal
-#                de l'aniversari (1r, 2n, 25è...).
-#   descripcio:  text que surt en obrir l'esdeveniment (opcional)
-#   font:        enllaç a la font (opcional)
-#   repeteix:    true (per defecte) = surt cada any per l'aniversari;
-#                false = surt només el dia indicat (per a una convivència, una trobada...)
+#   data:           data original (AAAA-MM-DD)
+#   titol:          títol en català. Si s'escriu {n}, es substitueix per l'ordinal
+#                   de l'aniversari (1r, 2n, 25è...).
+#   titol_es:       títol en castellà (si no hi és, es fa servir el català)
+#   descripcio:     text en català que surt en obrir l'esdeveniment (opcional)
+#   descripcio_es:  el mateix text en castellà (opcional)
+#   font:           enllaç a la font (opcional)
+#   repeteix:       true (per defecte) = surt cada any per l'aniversari;
+#                   false = surt només el dia indicat (per a una convivència, una trobada...)
 #
 # Per afegir-hi una data, copia un bloc, canvia'l i desa el fitxer.
 # Els calendaris es tornen a publicar sols al cap d'un parell de minuts.
 
 - data: 2016-07-19
   titol: "✝️ {n} aniversari de la mort de Carmen Hernández"
+  titol_es: "✝️ {n} aniversario de la muerte de Carmen Hernández"
   descripcio: >-
     Carmen Hernández Barrera, coiniciadora del Camí Neocatecumenal, va morir a Madrid
     el 19 de juliol de 2016, als 85 anys. Està enterrada al Seminari Redemptoris Mater de Madrid.
     El 19 de juliol de 2021 es va demanar formalment l'obertura de la seva causa de beatificació.
+  descripcio_es: >-
+    Carmen Hernández Barrera, coiniciadora del Camino Neocatecumenal, murió en Madrid
+    el 19 de julio de 2016, a los 85 años. Está enterrada en el Seminario Redemptoris Mater de Madrid.
+    El 19 de julio de 2021 se pidió formalmente la apertura de su causa de beatificación.
   font: https://www.ewtnnews.com/world/europe/neocatechumenal-way-to-conclude-diocesan-phase-of-co-founder-s-cause-for-canonization
 
 - data: 1930-11-24
   titol: "🎂 Naixement de Carmen Hernández ({n} aniversari)"
+  titol_es: "🎂 Nacimiento de Carmen Hernández ({n} aniversario)"
   descripcio: Carmen Hernández Barrera va néixer a Ólvega (Sòria) el 24 de novembre de 1930.
+  descripcio_es: Carmen Hernández Barrera nació en Ólvega (Soria) el 24 de noviembre de 1930.
   font: https://en.wikipedia.org/wiki/Carmen_Hern%C3%A1ndez
 
 - data: 2022-12-04
   titol: "📜 Obertura de la causa de beatificació de Carmen Hernández ({n} aniversari)"
+  titol_es: "📜 Apertura de la causa de beatificación de Carmen Hernández ({n} aniversario)"
   descripcio: >-
     El 4 de desembre de 2022 es va obrir a Madrid la fase diocesana de la causa
     de beatificació i canonització de Carmen Hernández.
+  descripcio_es: >-
+    El 4 de diciembre de 2022 se abrió en Madrid la fase diocesana de la causa
+    de beatificación y canonización de Carmen Hernández.
   font: https://www.ewtnnews.com/world/europe/neocatechumenal-way-to-conclude-diocesan-phase-of-co-founder-s-cause-for-canonization
 
 - data: 2026-06-02
   titol: "📜 Clausura de la fase diocesana de la causa de Carmen Hernández ({n} aniversari)"
+  titol_es: "📜 Clausura de la fase diocesana de la causa de Carmen Hernández ({n} aniversario)"
   descripcio: >-
     El 2 de juny de 2026 es va cloure al Seminari Redemptoris Mater de Madrid la fase diocesana
     de la causa de beatificació i canonització de Carmen Hernández. La causa continua ara a Roma.
+  descripcio_es: >-
+    El 2 de junio de 2026 se clausuró en el Seminario Redemptoris Mater de Madrid la fase diocesana
+    de la causa de beatificación y canonización de Carmen Hernández. La causa continúa ahora en Roma.
   font: https://www.laityfamilylife.va/content/dam/laityfamilylife/Pdf/Cammino%20Neocatecumenale_ChiusuracausaHernandez_ES.pdf
 
 - data: 1939-01-09
   titol: "🎂 Naixement de Kiko Argüello ({n} aniversari)"
+  titol_es: "🎂 Nacimiento de Kiko Argüello ({n} aniversario)"
   descripcio: >-
     Francisco (Kiko) Argüello, iniciador del Camí Neocatecumenal, va néixer a Lleó
     el 9 de gener de 1939.
+  descripcio_es: >-
+    Francisco (Kiko) Argüello, iniciador del Camino Neocatecumenal, nació en León
+    el 9 de enero de 1939.
   font: https://en.wikipedia.org/wiki/Kiko_Arg%C3%BCello
 
 - data: 2002-06-29
   titol: "📘 Aprovació ad experimentum dels Estatuts del Camí ({n} aniversari)"
+  titol_es: "📘 Aprobación ad experimentum de los Estatutos del Camino ({n} aniversario)"
   descripcio: >-
     El Pontifici Consell per als Laics va aprovar els Estatuts del Camí Neocatecumenal
     ad experimentum per cinc anys amb un decret datat el 29 de juny de 2002,
     solemnitat de Sant Pere i Sant Pau.
+  descripcio_es: >-
+    El Pontificio Consejo para los Laicos aprobó los Estatutos del Camino Neocatecumenal
+    ad experimentum por cinco años con un decreto fechado el 29 de junio de 2002,
+    solemnidad de San Pedro y San Pablo.
   font: https://www.ewtn.com/catholicism/library/decree-of-approval-of-statutes-of-neocatechumenal-way-ad-experimentum-2433
 
 - data: 2008-05-11
   titol: "📘 Aprovació definitiva dels Estatuts del Camí ({n} aniversari)"
+  titol_es: "📘 Aprobación definitiva de los Estatutos del Camino ({n} aniversario)"
   descripcio: >-
     El Pontifici Consell per als Laics va concedir l'aprovació definitiva dels Estatuts
     amb decret de l'11 de maig de 2008, diumenge de Pentecosta.
     El decret es va lliurar als iniciadors el 13 de juny de 2008.
+  descripcio_es: >-
+    El Pontificio Consejo para los Laicos concedió la aprobación definitiva de los Estatutos
+    con decreto del 11 de mayo de 2008, domingo de Pentecostés.
+    El decreto se entregó a los iniciadores el 13 de junio de 2008.
   font: https://www.laityfamilylife.va/content/laityfamilylife/en/associazioni-e-movimenti/repertorio/cammino-neocatecumenale.html
 
 - data: 1990-08-30
   titol: "✉️ Carta «Ogni qualvolta» de sant Joan Pau II ({n} aniversari)"
+  titol_es: "✉️ Carta «Ogni qualvolta» de san Juan Pablo II ({n} aniversario)"
   descripcio: >-
     Amb la carta «Ogni qualvolta» del 30 d'agost de 1990, Joan Pau II va reconèixer
     el Camí Neocatecumenal com un itinerari de formació catòlica vàlid
     per a la societat i els temps d'avui.
+  descripcio_es: >-
+    Con la carta «Ogni qualvolta» del 30 de agosto de 1990, Juan Pablo II reconoció
+    el Camino Neocatecumenal como un itinerario de formación católica válido
+    para la sociedad y los tiempos actuales.
   font: https://en.wikipedia.org/wiki/Kiko_Arg%C3%BCello
 
 - data: 2012-01-20
   titol: "🕊️ Aprovació de les celebracions del Camí ({n} aniversari)"
+  titol_es: "🕊️ Aprobación de las celebraciones del Camino ({n} aniversario)"
   descripcio: >-
     El gener de 2012 la Santa Seu va fer públic el decret del Pontifici Consell per als Laics
     que aprova les celebracions del Directori catequètic del Camí.
     El 20 de gener de 2012 Benet XVI va rebre el Camí en audiència a l'Aula Pau VI.
+  descripcio_es: >-
+    En enero de 2012 la Santa Sede hizo público el decreto del Pontificio Consejo para los Laicos
+    que aprueba las celebraciones del Directorio catequético del Camino.
+    El 20 de enero de 2012 Benedicto XVI recibió al Camino en audiencia en el Aula Pablo VI.
   font: https://www.vatican.va/content/benedict-xvi/es/speeches/2012/january/documents/hf_ben-xvi_spe_20120120_cammino-neocatecumenale.html
 
 - data: 1941-09-19
   titol: "🎂 Naixement del P. Mario Pezzi ({n} aniversari)"
+  titol_es: "🎂 Nacimiento del P. Mario Pezzi ({n} aniversario)"
   descripcio: >-
     El P. Mario Pezzi, prevere de l'Equip responsable internacional del Camí Neocatecumenal
     juntament amb Kiko Argüello (i amb Carmen Hernández fins al 2016), va néixer
     a Gottolengo (Brescia, Itàlia) el 19 de setembre de 1941.
+  descripcio_es: >-
+    El P. Mario Pezzi, presbítero del Equipo responsable internacional del Camino Neocatecumenal
+    junto con Kiko Argüello (y con Carmen Hernández hasta 2016), nació
+    en Gottolengo (Brescia, Italia) el 19 de septiembre de 1941.
   font: https://en.wikipedia.org/wiki/Mario_Pezzi_(priest)
 
 - data: 1969-03-18
   titol: "⛪ Ordenació sacerdotal del P. Mario Pezzi ({n} aniversari)"
+  titol_es: "⛪ Ordenación sacerdotal del P. Mario Pezzi ({n} aniversario)"
   descripcio: >-
     El P. Mario Pezzi va ser ordenat prevere el 18 de març de 1969, com a missioner comboni.
     El 1970 va entrar al Camí Neocatecumenal i des del 1971 forma part de l'Equip responsable internacional.
+  descripcio_es: >-
+    El P. Mario Pezzi fue ordenado presbítero el 18 de marzo de 1969, como misionero comboniano.
+    En 1970 entró en el Camino Neocatecumenal y desde 1971 forma parte del Equipo responsable internacional.
   font: https://en.wikipedia.org/wiki/Mario_Pezzi_(priest)
 
 # Exemple d'una data que no es repeteix (treu els # per activar-la):
 # - data: 2027-03-12
 #   titol: "⛺ Convivència de comunitat"
+#   titol_es: "⛺ Convivencia de comunidad"
 #   descripcio: Lloc, horari...
 #   repeteix: false

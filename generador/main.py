@@ -1,4 +1,4 @@
-"""Genera els tres calendaris (.ics) i la pàgina web a la carpeta de sortida.
+"""Genera els calendaris (.ics), en català i en castellà, i la pàgina web a la carpeta de sortida.
 
 Ús:  python generador/main.py [--sortida public] [--avui AAAA-MM-DD]
 """
@@ -23,8 +23,21 @@ ANYS_ENRERE = 0
 ANYS_ENDAVANT = 3
 
 ARREL = pathlib.Path(__file__).resolve().parent.parent
-PEU = ("\n\nCalendari romà general amb el propi d'Espanya, de Catalunya i de la diòcesi de Sant Feliu "
-       "de Llobregat.")
+
+TEXTOS = {
+    'ca': dict(
+        peu="Calendari romà general amb el propi d'Espanya, de Catalunya i de la diòcesi de Sant Feliu de Llobregat.",
+        signatura=" Elaborat per {autor}.", periode="del {a} al {b}",
+        fitxers={
+            'liturgia-i-cami.ics': ('Litúrgia i Camí', "Calendari litúrgic en català i dates del Camí Neocatecumenal, {p}.{s}", 'tot'),
+        }),
+    'es': dict(
+        peu="Calendario romano general con el propio de España, de Cataluña y de la diócesis de Sant Feliu de Llobregat.",
+        signatura=" Elaborado por {autor}.", periode="del {a} al {b}",
+        fitxers={
+            'calendario-es.ics': ('Liturgia y Camino', "Calendario litúrgico en castellano y fechas del Camino Neocatecumenal, {p}.{s}", 'tot'),
+        }),
+}
 
 
 def main():
@@ -45,33 +58,33 @@ def main():
     raw = json.loads(tmp.read_text())
     tmp.unlink()
 
-    propi = yaml.safe_load((ARREL / 'dades' / 'propi.yaml').read_text(encoding='utf-8'))
-    config = yaml.safe_load((ARREL / 'dades' / 'config.yaml').read_text(encoding='utf-8')) or {}
+    llegeix = lambda nom: yaml.safe_load((ARREL / 'dades' / nom).read_text(encoding='utf-8')) or []  # noqa: E731
+    propi, entrades_cami = llegeix('propi.yaml'), llegeix('cami.yaml')
+    locals_ = llegeix('locals.yaml') if (ARREL / 'dades' / 'locals.yaml').exists() else []
+    config = llegeix('config.yaml') or {}
     autor = config.get('autor') or ''
-    signatura = f" Elaborat per {autor}." if autor else ''
-    entrades_cami = yaml.safe_load((ARREL / 'dades' / 'cami.yaml').read_text(encoding='utf-8')) or []
 
-    dies, trams, avisos = liturgia.genera(raw, anys, propi, emojis=bool(config.get('emojis')),
-                                          sigles=bool(config.get('sigles')))
-    inici, fi = dies[0]['data'], dies[-1]['data']
-    ev_lit = [ics.vevent(ics.uid('dia', x['data']), x['data'], x['data'] + dt.timedelta(1),
-                         x['titol'], x['desc'] + PEU + signatura) for x in dies]
-    ev_lit += [ics.vevent(ics.uid('temps', t['ini']), t['ini'], t['fi'] + dt.timedelta(1), t['nom'],
-                          f"Del {t['ini']:%d/%m/%Y} al {t['fi']:%d/%m/%Y}.") for t in trams]
-    ev_cami = cami.genera(entrades_cami, inici, fi)
-    # Celebracions locals (dades/locals.yaml): van al calendari de Litúrgia com a esdeveniments a part
-    fitxer_locals = ARREL / 'dades' / 'locals.yaml'
-    if fitxer_locals.exists():
-        ev_lit += cami.genera(yaml.safe_load(fitxer_locals.read_text(encoding='utf-8')) or [], inici, fi, prefix='local')
-
-    periode = f"del {inici:%d/%m/%Y} al {fi:%d/%m/%Y}"
-    fitxers = {
-        'liturgia.ics': ('Litúrgia', f"Calendari litúrgic en català (Catalunya, diòcesi de Sant Feliu de Llobregat), {periode}.{signatura}", ev_lit),
-        'cami.ics': ('Camí Neocatecumenal', f"Dates i aniversaris del Camí Neocatecumenal, {periode}.{signatura}", ev_cami),
-        'liturgia-i-cami.ics': ('Litúrgia i Camí', f"Calendari litúrgic i dates del Camí Neocatecumenal, {periode}.{signatura}", ev_lit + ev_cami),
-    }
-    for nom, (titol, descripcio, evs) in fitxers.items():
-        (sortida / nom).write_text(ics.calendari(titol, descripcio, evs), encoding='utf-8', newline='')
+    resum, avisos_tots = {}, []
+    for lang, tx in TEXTOS.items():
+        dies, trams, avisos = liturgia.genera(raw, anys, propi, emojis=bool(config.get('emojis')),
+                                              sigles=bool(config.get('sigles')), lang=lang)
+        avisos_tots += avisos if lang == 'ca' else []
+        inici, fi = dies[0]['data'], dies[-1]['data']
+        signatura = tx['signatura'].format(autor=autor) if autor else ''
+        pre = (lang,) if lang != 'ca' else ()
+        ev_lit = [ics.vevent(ics.uid(*pre, 'dia', x['data']), x['data'], x['data'] + dt.timedelta(1),
+                             x['titol'], x['desc'] + '\n\n' + tx['peu'] + signatura) for x in dies]
+        ev_lit += [ics.vevent(ics.uid(*pre, 'temps', t['ini']), t['ini'], t['fi'] + dt.timedelta(1),
+                              t['nom'], t['desc']) for t in trams]
+        ev_lit += cami.genera(locals_, inici, fi, prefix='local', lang=lang)
+        ev_cami = cami.genera(entrades_cami, inici, fi, lang=lang)
+        grups = {'tot': ev_lit + ev_cami, 'lit': ev_lit, 'cami': ev_cami}
+        periode = tx['periode'].format(a=f"{inici:%d/%m/%Y}", b=f"{fi:%d/%m/%Y}")
+        for nom, (titol, descripcio, grup) in tx['fitxers'].items():
+            (sortida / nom).write_text(
+                ics.calendari(titol, descripcio.format(p=periode, s=signatura), grups[grup]),
+                encoding='utf-8', newline='')
+            resum[nom] = len(grups[grup])
 
     for f in (ARREL / 'web').iterdir():
         shutil.copy(f, sortida / f.name)
@@ -87,13 +100,13 @@ def main():
         'autor': autor,
         'inici': f"{inici:%d/%m/%Y}", 'fi': f"{fi:%d/%m/%Y}",
         'cursos': [f"{y - 1}-{str(y)[2:]}" for y in anys],
-        'esdeveniments': {k: len(v[2]) for k, v in fitxers.items()},
+        'esdeveniments': resum,
     }, ensure_ascii=False, indent=1), encoding='utf-8')
 
-    print(f"Període: {periode} (cursos {', '.join(f'{y - 1}-{str(y)[2:]}' for y in anys)})")
-    for k, v in fitxers.items():
-        print(f"  {k}: {len(v[2])} esdeveniments")
-    for av in avisos:
+    print(f"Període: {inici:%d/%m/%Y} - {fi:%d/%m/%Y} (cursos {', '.join(f'{y - 1}-{str(y)[2:]}' for y in anys)})")
+    for k, v in resum.items():
+        print(f"  {k}: {v} esdeveniments")
+    for av in avisos_tots:
         print('  ·', av)
 
 
