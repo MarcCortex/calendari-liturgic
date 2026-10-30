@@ -88,9 +88,6 @@ def main():
 
     for f in (ARREL / 'web').iterdir():
         shutil.copy(f, sortida / f.name)
-    index = sortida / 'index.html'
-    index.write_text(index.read_text(encoding='utf-8').replace(
-        '__VERSIO__', dt.datetime.now(dt.timezone.utc).strftime('%Y%m%d%H%M')), encoding='utf-8')
     codi_gc = str(config.get('goatcounter') or '').strip()
     if codi_gc:  # comptador de visites i de clics (goatcounter.com)
         index = sortida / 'index.html'

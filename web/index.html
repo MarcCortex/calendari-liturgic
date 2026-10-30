@@ -82,14 +82,13 @@
       desc: 'Calendario litúrgico. Cada día con la celebración o los santos; al abrirlo, el tiempo, la semana, el grado y el color litúrgico.',
       google: 'Añadir a Google Calendar', copia: 'Copiar enlace', copiat: 'Copiado ✓' },
   ];
-  const VERSIO = '__VERSIO__';  // el generador hi posa la data i hora de publicació
   const base = new URL('.', location.href);
   const cont = document.getElementById('calendaris');
   for (const c of CALS) {
     const https = new URL(c.fitxer, base).href;
     const webcal = https.replace(/^https?:/, 'webcal:');
-    // Google només accepta webcal://. S'hi afegeix la versió perquè no faci servir una còpia antiga.
-    const google = 'https://calendar.google.com/calendar/r?cid=' + encodeURIComponent(webcal + '?v=' + VERSIO);
+    // Google només accepta l'adreça webcal:// tal qual (sense https ni paràmetres).
+    const google = 'https://calendar.google.com/calendar/r?cid=' + encodeURIComponent(webcal);
     const el = document.createElement('section');
     el.className = 'card';
     el.innerHTML = `
