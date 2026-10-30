@@ -1,6 +1,7 @@
 """Calendari litúrgic en català: propi del temps (calculat aquí) + santoral (romcal, Espanya)
 + propi de Catalunya i de la diòcesi (dades/propi.yaml)."""
 import collections
+import urllib.parse
 import datetime as dt
 
 from noms_ca import NOMS, NOMS_ES
@@ -232,7 +233,8 @@ E = {
     inici_any="Inici de l'any litúrgic {curs} ({cic}).", cic="cicle dominical {a}, cicle ferial {b}",
     curs='curs', trams=["Temps d'Advent", 'Temps de Nadal', "Temps de durant l'any (1a part)", 'Temps de Quaresma',
                         'Tridu Pasqual', 'Temps de Pasqua', "Temps de durant l'any (2a part)"],
-    del_al='Del {a} al {b}.'),
+    del_al='Del {a} al {b}.', mes_info='Més informació (Viquipèdia):',
+    wiki='https://ca.wikipedia.org/w/index.php?title=Especial:Cerca&go=V%C3%A9s&search='),
  'es': dict(
     rang={S: 'Solemnidad', F: 'Fiesta', M: 'Memoria obligatoria', ML: 'Memoria libre',
           COM: 'Conmemoración', TEMP: 'Témporas (celebración propia de España)'},
@@ -247,8 +249,14 @@ E = {
     inici_any='Inicio del año litúrgico {curs} ({cic}).', cic='ciclo dominical {a}, ciclo ferial {b}',
     curs='curso', trams=['Tiempo de Adviento', 'Tiempo de Navidad', 'Tiempo Ordinario (1.ª parte)', 'Tiempo de Cuaresma',
                          'Triduo Pascual', 'Tiempo de Pascua', 'Tiempo Ordinario (2.ª parte)'],
-    del_al='Del {a} al {b}.'),
+    del_al='Del {a} al {b}.', mes_info='Más información (Wikipedia):',
+    wiki='https://es.wikipedia.org/w/index.php?title=Especial:Buscar&go=Ir&search='),
 }
+
+
+def enllac_wiki(nom, L):
+    """Enllaç de cerca a la Viquipèdia: obre l'article si el títol coincideix; si no, la llista de resultats."""
+    return L['wiki'] + urllib.parse.quote_plus(nom.split(', ')[0])
 
 
 def genera(raw, anys, propi, emojis=False, sigles=False, lang='ca'):
@@ -402,6 +410,10 @@ def genera(raw, anys, propi, emojis=False, sigles=False, lang='ca'):
         desc.append(f"{L['color_l']}: {L['color'][color]}")
         desc.append(f"{L['salteri']} {SALT.get(info['psalter'], '—')}")
         desc.append(f"{L['cicle_dom']}: {L['cicle'][info['sunCycle']]} · {L['cicle_fer']}: {L['cicle'][info['wkCycle']]}")
+        sants = ([p] if p and p['rank'] != TEMP else []) + opc
+        if sants:
+            desc += ['', L['mes_info']]
+            desc += [f"· {e['nom'].split(', ')[0]}: {enllac_wiki(e['nom'], L)}" for e in sants]
         # Dia "normal": fèria sense cap sant ni celebració. No es publica.
         buit = not princ and not opc and tipus == 'feria'
         dies.append(dict(data=d, buit=buit, titol=(f"{EMOJI[color]} " if emojis else '') + titol, desc='\n'.join(desc)))
