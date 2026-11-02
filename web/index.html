@@ -50,26 +50,8 @@
   <p class="sub" id="info"></p>
 
   <section class="avis" id="avis-android">
-    <h2>📱 Al mòbil Android</h2>
-    <p>Google no deixa subscriure's a un calendari des de l'app del mòbil. Fes-ho així (només cal un cop):</p>
-    <ol>
-      <li>Prem <strong>Copia l'enllaç</strong> del calendari que vulguis.</li>
-      <li>Obre <strong>calendar.google.com</strong> a Chrome, toca <strong>⋮</strong> i marca <strong>Versió per a ordinador</strong>.</li>
-      <li>A l'esquerra, a <em>Altres calendaris</em>, toca <strong>+ → Des de l'URL</strong>, enganxa l'enllaç i prem <strong>Afegeix el calendari</strong>.</li>
-      <li>A l'app de Google Calendar: <strong>☰ → ⚙️ → Calendari litúrgic</strong> i activa <strong>Sincronitza</strong>.</li>
-    </ol>
-    <p style="margin-top:8px">També ho pots fer des d'un ordinador amb el mateix compte de Google: després surt sol al mòbil.</p>
-  </section>
-  <section class="avis" id="avis-android-es">
-    <h2>📱 En el móvil Android</h2>
-    <p>Google no permite suscribirse a un calendario desde la app del móvil. Hazlo así (solo una vez):</p>
-    <ol>
-      <li>Pulsa <strong>Copiar enlace</strong> del calendario que quieras.</li>
-      <li>Abre <strong>calendar.google.com</strong> en Chrome, toca <strong>⋮</strong> y marca <strong>Sitio de escritorio</strong>.</li>
-      <li>A la izquierda, en <em>Otros calendarios</em>, toca <strong>+ → Desde URL</strong>, pega el enlace y pulsa <strong>Añadir calendario</strong>.</li>
-      <li>En la app de Google Calendar: <strong>☰ → ⚙️ → Calendario litúrgico</strong> y activa <strong>Sincronizar</strong>.</li>
-    </ol>
-    <p style="margin-top:8px">También puedes hacerlo desde un ordenador con la misma cuenta de Google: después aparece solo en el móvil.</p>
+    <p>📱 <strong>Si des del mòbil no funciona</strong>, afegeix el calendari des d'un ordinador amb el mateix compte de Google. Després t'apareixerà sol al mòbil (a l'app de Google Calendar: ☰ → ⚙️ → Calendari litúrgic → activa <em>Sincronitza</em>).</p>
+    <p style="margin-top:8px">📱 <strong>Si desde el móvil no funciona</strong>, añade el calendario desde un ordenador con la misma cuenta de Google. Después aparecerá solo en el móvil (en la app de Google Calendar: ☰ → ⚙️ → Calendario litúrgico → activa <em>Sincronizar</em>).</p>
   </section>
 
   <div id="calendaris"></div>
@@ -112,7 +94,7 @@
       google: 'Añadir a Google Calendar', copia: 'Copiar enlace', copiat: 'Copiado ✓' },
   ];
   const ANDROID = /Android/i.test(navigator.userAgent);
-  if (ANDROID) for (const id of ['avis-android', 'avis-android-es']) document.getElementById(id).style.display = 'block';
+  if (ANDROID) document.getElementById('avis-android').style.display = 'block';
   const base = new URL('.', location.href);
   const cont = document.getElementById('calendaris');
   for (const c of CALS) {
@@ -136,10 +118,8 @@
     const slug = c.fitxer.replace('.ics', '');
     const g = el.querySelector('.primari');
     g.href = google; g.textContent = c.google; g.dataset.goatcounterClick = 'google-' + slug;
-    if (ANDROID) g.style.display = 'none';  // a Android, Google no permet subscriure's amb aquest botó
     const w = el.querySelector('.webcal');
     w.href = webcal; w.dataset.goatcounterClick = 'webcal-' + slug;
-    if (ANDROID) w.style.display = 'none';  // a Android fa una còpia fixa (no s'actualitza)
     const b = el.querySelector('.copia');
     b.textContent = c.copia; b.dataset.goatcounterClick = 'copia-' + slug;
     b.addEventListener('click', async () => {
