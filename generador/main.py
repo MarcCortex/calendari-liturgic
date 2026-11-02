@@ -74,8 +74,9 @@ def main():
         pre = (lang,) if lang != 'ca' else ()
         ev_lit = [ics.vevent(ics.uid(*pre, 'dia', x['data']), x['data'], x['data'] + dt.timedelta(1),
                              x['titol'], x['desc'] + '\n\n' + tx['peu'] + signatura) for x in dies if not x['buit']]
-        ev_lit += [ics.vevent(ics.uid(*pre, 'temps', t['ini']), t['ini'], t['fi'] + dt.timedelta(1),
-                              t['nom'], t['desc']) for t in trams]
+        if config.get('franges'):  # esdeveniments llargs per a cada temps litúrgic (desactivats per defecte)
+            ev_lit += [ics.vevent(ics.uid(*pre, 'temps', t['ini']), t['ini'], t['fi'] + dt.timedelta(1),
+                                  t['nom'], t['desc']) for t in trams]
         ev_lit += cami.genera(locals_, inici, fi, prefix='local', lang=lang)
         ev_cami = cami.genera(entrades_cami, inici, fi, lang=lang)
         grups = {'tot': ev_lit + ev_cami, 'lit': ev_lit, 'cami': ev_cami}

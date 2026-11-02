@@ -6,6 +6,9 @@ autor: "Marc SR"
 # true = posa un cercle del color litúrgic davant de cada títol (🟢 ⚪ 🔴 🟣)
 emojis: false
 
+# true = afegeix esdeveniments llargs per a cada temps litúrgic ("Temps d'Advent · curs...")
+franges: false
+
 # true = afegeix el grau al títol: (S) solemnitat, (F) festa, (M) memòria, (ml) memòria lliure
 sigles: false
 
