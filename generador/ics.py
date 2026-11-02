@@ -3,9 +3,9 @@ import datetime as dt
 import hashlib
 
 SUFIX_UID = '@liturgia-cat'
-# Color suggerit (to "flamenc" de Google Calendar). L'Apple Calendar el fa servir; Google l'ignora.
-COLOR = '#E67C73'
-COLOR_CSS = 'salmon'
+# Color suggerit (groc llimona de Google Calendar). L'Apple Calendar el fa servir; Google l'ignora.
+COLOR = '#E4C441'
+COLOR_CSS = 'gold'
 
 
 def esc(t):
