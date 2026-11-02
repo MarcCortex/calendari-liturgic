@@ -404,17 +404,21 @@ def genera(raw, anys, propi, emojis=False, sigles=False, lang='ca'):
             if lliures:
                 noms = [o['nom'].split(', ')[0] + (f" ({SIGLA[o['rank']]})" if sigles else '') for o in lliures]
                 titol = noms[0] if len(noms) == 1 else ', '.join(noms[:-1]) + L['i'] + noms[-1]
+        # Descripció compacta: el nom del dia ja inclou el temps i la setmana.
         desc = []
         if p:
-            desc.append(f"{L['dia']}: {nomt}")
-        desc.append(f"{L['temps']}: {temps} — {setm}")
-        desc.append(f"{L['celebracio']}: {p['nom'] if p else nomt} — {grau}")
+            desc.append(nomt)
+            desc.append(f"{p['nom']} — {grau}")
+        else:
+            if tipus in ('solemnitat', 'festa'):
+                desc.append(f"{nomt} — {grau}")
+            elif opc:  # fèria amb sants: el títol són els sants, aquí hi va el nom del dia
+                desc.append(nomt)
         desc += [f"{L['rang'][o['rank']]}: {o['nom']}" for o in opc]
         if p and p.get('nota'):
             desc.append(p['nota'])
-        desc.append(f"{L['color_l']}: {L['color'][color]}")
-        desc.append(f"{L['salteri']} {SALT.get(info['psalter'], '—')}")
-        desc.append(f"{L['cicle_dom']}: {L['cicle'][info['sunCycle']]} · {L['cicle_fer']}: {L['cicle'][info['wkCycle']]}")
+        desc.append(f"{L['color_l']}: {L['color'][color]} · {L['salteri']} {SALT.get(info['psalter'], '—')} · "
+                    f"{L['cicle_dom']} {L['cicle'][info['sunCycle']]} · {L['cicle_fer']} {L['cicle'][info['wkCycle']].split(' ')[0]}")
         sants = ([p] if p and p['rank'] != TEMP else []) + opc
         if sants:
             desc += ['', L['mes_info']]
