@@ -233,7 +233,7 @@ E = {
     inici_any="Inici de l'any litúrgic {curs} ({cic}).", cic="cicle dominical {a}, cicle ferial {b}",
     curs='curs', trams=["Temps d'Advent", 'Temps de Nadal', "Temps de durant l'any (1a part)", 'Temps de Quaresma',
                         'Tridu Pasqual', 'Temps de Pasqua', "Temps de durant l'any (2a part)"],
-    del_al='Del {a} al {b}.', mes_info='Més informació (Viquipèdia):',
+    del_al='Del {a} al {b}.', mes_info='Més informació:', cerca='santoral', hl='ca',
     wiki='https://ca.wikipedia.org/w/index.php?title=Especial:Cerca&go=V%C3%A9s&search='),
  'es': dict(
     rang={S: 'Solemnidad', F: 'Fiesta', M: 'Memoria obligatoria', ML: 'Memoria libre',
@@ -249,9 +249,14 @@ E = {
     inici_any='Inicio del año litúrgico {curs} ({cic}).', cic='ciclo dominical {a}, ciclo ferial {b}',
     curs='curso', trams=['Tiempo de Adviento', 'Tiempo de Navidad', 'Tiempo Ordinario (1.ª parte)', 'Tiempo de Cuaresma',
                          'Triduo Pascual', 'Tiempo de Pascua', 'Tiempo Ordinario (2.ª parte)'],
-    del_al='Del {a} al {b}.', mes_info='Más información (Wikipedia):',
+    del_al='Del {a} al {b}.', mes_info='Más información:', cerca='santoral', hl='es',
     wiki='https://es.wikipedia.org/w/index.php?title=Especial:Buscar&go=Ir&search='),
 }
+
+
+def enllac_google(nom, L):
+    """Cerca a Google del nom complet del sant (quan Google en té, hi surt el resum amb IA a dalt)."""
+    return f"https://www.google.com/search?hl={L['hl']}&q=" + urllib.parse.quote_plus(f"{nom} {L['cerca']}")
 
 
 def enllac_wiki(nom, L):
@@ -413,7 +418,10 @@ def genera(raw, anys, propi, emojis=False, sigles=False, lang='ca'):
         sants = ([p] if p and p['rank'] != TEMP else []) + opc
         if sants:
             desc += ['', L['mes_info']]
-            desc += [f"· {e['nom'].split(', ')[0]}: {enllac_wiki(e['nom'], L)}" for e in sants]
+            for e in sants:
+                desc += [f"· {e['nom'].split(', ')[0]}",
+                         f"  Google: {enllac_google(e['nom'], L)}",
+                         f"  {'Viquipèdia' if lang == 'ca' else 'Wikipedia'}: {enllac_wiki(e['nom'], L)}"]
         # Dia "normal": fèria sense cap sant ni celebració. No es publica.
         buit = not princ and not opc and tipus == 'feria'
         dies.append(dict(data=d, buit=buit, titol=(f"{EMOJI[color]} " if emojis else '') + titol, desc='\n'.join(desc)))
